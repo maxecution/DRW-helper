@@ -112,24 +112,27 @@ function ConstructionPage() {
   };
 
   return (
-    <div className='flex flex-col min-h-screen bg-gray-900 text-white'>
+    <div className='flex flex-col min-h-screen bg-gray-900 text-white w-full max-w-full'>
       {/* Main Header */}
       <header className='text-center py-6 bg-gray-800 shadow-lg'>
-        <h1 className='text-4xl font-bold text-yellow-400'>Housing and Construction Calculator</h1>
+        <h1 className='text-2xl font-bold text-yellow-400 sm:text-3xl md:text-4xl'>
+          Housing and Construction Calculator
+        </h1>
       </header>
 
       {/* Content Section */}
-      <div className='flex flex-grow gap-8 p-8'>
+      <div className='flex flex-col md:flex-row gap-8 p-4 sm:p-6 md:p-8'>
         {/* Left Section (1/3 Width) */}
-        <div className='w-1/3 space-y-6'>
-          <div className='flex items-center justify-between gap-4'>
+        <div className='w-full md:w-1/3 space-y-6'>
+          {/* Expansion Selector */}
+          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
             <label
               htmlFor='expansion-select'
-              className='w-2/3 text-md font-medium text-yellow-400 text-nowrap'>
+              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
               Select an expansion:
             </label>
             <Select
-              className='text-black w-full'
+              className='text-black w-full sm:w-1/2'
               id='expansion-select'
               options={expansionOptions}
               value={expansion ? expansionOptions.find((opt) => opt.value === expansion.id) : null}
@@ -139,10 +142,12 @@ function ConstructionPage() {
               placeholder='Expansions...'
             />
           </div>
-          <div className='flex items-center justify-between gap-4'>
+
+          {/* Existing Structures */}
+          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
             <label
               htmlFor='existing-structure-amount'
-              className='w-2/3 text-md font-medium text-yellow-400 text-nowrap text-left'>
+              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
               Number of existing structures:
             </label>
             <div className='flex items-center'>
@@ -169,10 +174,12 @@ function ConstructionPage() {
               />
             </div>
           </div>
-          <div className='flex items-center justify-between gap-4'>
+
+          {/* Unused Slots */}
+          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
             <label
               htmlFor='unused-slots-amount'
-              className='w-2/3 text-md font-medium text-yellow-400 text-nowrap text-left'>
+              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
               Number of un-used slots:
             </label>
             <div className='flex items-center'>
@@ -204,10 +211,12 @@ function ConstructionPage() {
               />
             </div>
           </div>
-          <div className='flex items-center justify-between gap-4'>
+
+          {/* Empty Plots */}
+          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
             <label
               htmlFor='empty-plots-amount'
-              className='w-2/3 text-md font-medium text-yellow-400 text-nowrap text-left'>
+              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
               Number of empty plots:
             </label>
             <div className='flex items-center'>
@@ -234,9 +243,11 @@ function ConstructionPage() {
               />
             </div>
           </div>
+
+          {/* Clear Button */}
           <div className='items-center'>
             <button
-              className='font-bold border border-gray-600 bg-gray-700 hover:bg-gray-600 text-white text-right py-2 px-6 rounded-md'
+              className='font-bold border border-gray-600 bg-gray-700 hover:bg-gray-600 text-white text-right py-2 px-6 rounded-md w-full sm:w-auto'
               onClick={handleClear}>
               Clear
             </button>
@@ -244,7 +255,7 @@ function ConstructionPage() {
         </div>
 
         {/* Right Section (2/3 Width) */}
-        <div className='w-2/3'>
+        <div className='w-full md:w-2/3 text-center'>
           <ExpansionDetails
             expansion={expansion}
             expansions={addedExpansions}
@@ -254,7 +265,7 @@ function ConstructionPage() {
       </div>
 
       {/* Construction Basket Section */}
-      <div className='bg-gray-800 p-6'>
+      <div className='bg-gray-800 p-6 text-center'>
         <ConstructionBasket
           expansions={addedExpansions}
           onRemove={handleRemoveExpansion}

@@ -50,51 +50,53 @@ function ConstructionBasket({
   }
 
   return (
-    <div className='max-w mx-auto p-6 bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600'>
+    <div className='w-full max-w-full sm:max-w-lg mx-auto p-6 bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600'>
       <h2 className='text-3xl font-semibold mb-4 text-center text-yellow-400'>
         Construction Basket
       </h2>
-      <table className='min-w-full bg-gray-700 rounded-md'>
-        <thead>
-          <tr className='border-b-4 border-gray-600'>
-            <th className='p-2 text-left text-lg font-semibold'>#</th>
-            <th className='p-2 text-left text-lg font-semibold'>Name</th>
-            <th className='p-2 text-left text-lg font-semibold'>Slots</th>
-            <th className='p-2 text-left text-lg font-semibold'>Cost</th>
-            <th className='p-2 text-left text-lg font-semibold'></th>
-          </tr>
-        </thead>
-        <tbody>
-          {expansions.map((expansion, index) => {
-            const { cost, slots } = tierInfo[expansion.tier] || { cost: 0, slots: 1 };
+      <div className='overflow-x-auto'>
+        <table className='min-w-full bg-gray-700 rounded-md'>
+          <thead>
+            <tr className='border-b-4 border-gray-600'>
+              <th className='p-2 text-left text-lg font-semibold'>#</th>
+              <th className='p-2 text-left text-lg font-semibold'>Name</th>
+              <th className='p-2 text-left text-lg font-semibold'>Slots</th>
+              <th className='p-2 text-left text-lg font-semibold'>Cost</th>
+              <th className='p-2 text-left text-lg font-semibold'></th>
+            </tr>
+          </thead>
+          <tbody>
+            {expansions.map((expansion, index) => {
+              const { cost, slots } = tierInfo[expansion.tier] || { cost: 0, slots: 1 };
 
-            return (
-              <tr key={expansion.id} className='border-b border-gray-600'>
-                <td className='p-2 text-left'>{index + 1}</td>
-                <td className='p-2 text-left'>{expansion.name}</td>
-                <td className='p-3 text-left'>{slots}</td>
-                <td className='p-3 text-left'>{cost} gp</td>
-                <td className='p-2'>
-                  <button
-                    className='bg-red-600 text-white px-2 py-1 rounded-md font-bold'
-                    onClick={() => onRemove(expansion.id)}>
-                    X
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-        <tfoot>
-          <tr className='bg-gray-800 text-yellow-400'>
-            <td className='p-2 font-semibold text-left'>Total</td>
-            <td className='p-2 text-left'>{totalExpansions} Expansion(s)</td>
-            <td className='p-3 text-left'>{totalSlots}</td>
-            <td className='p-3 text-left'>{totalExpansionsCost} gp</td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
+              return (
+                <tr key={expansion.id} className='border-b border-gray-600'>
+                  <td className='p-2 text-left'>{index + 1}</td>
+                  <td className='p-2 text-left'>{expansion.name}</td>
+                  <td className='p-3 text-left'>{slots}</td>
+                  <td className='p-3 text-left'>{cost} gp</td>
+                  <td className='p-2'>
+                    <button
+                      className='bg-red-600 text-white px-2 py-1 rounded-md font-bold'
+                      onClick={() => onRemove(expansion.id)}>
+                      X
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tfoot>
+            <tr className='bg-gray-800 text-yellow-400'>
+              <td className='p-2 font-semibold text-left'>Total</td>
+              <td className='p-2 text-left'>{totalExpansions} Expansion(s)</td>
+              <td className='p-3 text-left'>{totalSlots}</td>
+              <td className='p-3 text-left'>{totalExpansionsCost} gp</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
 
       {/* Final Cost Calculation Section */}
       <div className='mt-6 p-4 bg-gray-700 text-white rounded-lg shadow'>
