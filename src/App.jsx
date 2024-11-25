@@ -1,10 +1,14 @@
+import { BrowserRouter as Router, Route, Routes as Switch } from "react-router-dom";
+import ConstructionPage from "./pages/constructionPage/ConstructionPage";
 import "./App.css";
 
 function App() {
   return (
-    <div className='flex justify-center items-center h-screen bg-gray-400'>
-      <h1 className='text-3xl font-bold text-gray-500'>This will become the DRW Helper!</h1>
-    </div>
+    <Router basename='/DRW-helper'>
+      <Switch>
+        <Route path='/construction-planner' element={<ConstructionPage />} />
+      </Switch>
+    </Router>
   );
 }
 

@@ -1,0 +1,435 @@
+[
+  {
+    "id": 1,
+    "name": "Bedroom",
+    "tier": 0,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "A single bedroom, big enough for up to 2 medium creatures or 1 large creature. Any single structure can have the Bedroom expansion if the structure does not currently have an expansion. This provides comfortable sleeping space for up to 2 medium creatures or 1 large creature. Other expansions can replace the bedroom expansion, doing so removes the ability to sleep here unless the new expansion contains sleeping benefits itself.",
+        "bold": false
+      },
+      {
+        "text": "Any single structure can have the Bedroom expansion if the structure does not currently have an expansion. This provides comfortable sleeping space for up to 2 medium creatures or 1 large creature. Other expansions can replace the bedroom expansion, doing so removes the ability to sleep here unless the new expansion contains sleeping benefits itself.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Enchanted Locks",
+    "tier": 1,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "Provides magical infusions to each lock and opening to your structure.",
+        "bold": false
+      },
+      {
+        "text": "Any attempt to pick your structure's locks or otherwise break in has the DC increase by 10. These magical protections cannot be dispelled but do become inert under anti-magic.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Herb Garden",
+    "tier": 1,
+    "repeatable": true,
+    "description": [
+      {
+        "text": "The herb garden is a verdant enclave teeming with a variety of fragrant herbs, medicinal plants, and rare botanical specimens. Laid out in meticulously organised rows and sections, each type of plant has its own designated space, optimised for sunlight exposure and soil composition.",
+        "bold": false
+      },
+
+      {
+        "text": "Once per month, the garden produces enough varied herbs for the owner to trade with merchants for either 1d4+6 Potions of Healing or 1d4+2 Potions of Greater Healing. If the owner has proficiency with Herbalism Tools, Alchemist’s Tools, or a Poisoner’s Kit, they can choose to cultivate a rare herb instead of trading for potions. The rare herb produced must align with the tools in which they have proficiency, and it will be one from the Crafting Supplement with a crafting cost of 200 gp or less.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Hidden Cellar",
+    "tier": 1,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "A well hidden basement under your land.",
+        "bold": false
+      },
+
+      {
+        "text": "The entrance can only be located with a DC 20 Investigation check. If a creature is shown or already knows where the entrance is they do not need to make this check. The hidden cellar can be locked and if the Enchanted Locks expansion is present it also affects this. The cellar can have up to 3 slots worth of expansions in it. This does not increase the expansion slots of the structure, merely hides what the structure can have built.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Vault",
+    "tier": 1,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "Lying behind a solid wall, unimaginable treasures and artefacts from countless years of exploring dungeons and ancient tombs. An almost impregnable room of solid stone.",
+        "bold": false
+      },
+
+      {
+        "text": "This room is made of 2 foot thick stone and steel with a large door that even the most skilled thieves will have difficulty breaking into. The door itself can be opened with either a combination or a key (chosen during construction) that has a pick locking DC of 30, 1200 hit points, an AC of 19, and a Damage Threshold of 20.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Living Space",
+    "tier": 2,
+    "repeatable": true,
+    "description": [
+      {
+        "text": "A living Room, a kitchen and separate small bedrooms. Each additional Living Space increases the size of the living room and kitchen, and adds additional rooms. ",
+        "bold": false
+      },
+      {
+        "text": "Up to 4 medium or large creatures can take a long rest here and become Well Rested until they next finish a Short Rest. The next time a Well Rested creature rolls hit die to regain hit points during a Short Rest it can re-roll a number of those hit die equal to their proficiency bonus and take the highest results.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Jail Cells",
+    "tier": 2,
+    "repeatable": true,
+    "description": [
+      {
+        "text": "The jail cell expansion is a secure, fortified section of the building designed to detain up to four creatures of Large size or smaller. Constructed from thick, reinforced stone walls and heavy iron bars, each cell is equipped with a sturdy iron door featuring a complex locking mechanism. The area is well-lit, with a small, secure observation area allowing guards to keep watch without compromising their safety. ",
+        "bold": false
+      },
+      {
+        "text": "The jail cells are capable of securely holding up to four Large or smaller creatures. Each cell door is fitted with a high-quality lock that has a DC of 15 to pick.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Library",
+    "tier": 2,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The small library is a cosy, inviting space filled with shelves that reach from floor to ceiling, brimming with books, scrolls, and maps. Crafted from rich, dark wood, the shelves are intricately carved with motifs of famous historical events and legendary figures. ",
+        "bold": false
+      },
+      { "text": "Any character that spends time researching in this library gains advantage on an Intelligence (History) check made to gain knowledge.", "bold": true }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Stables",
+    "tier": 2,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The stables are a robust and well-ventilated structure made of sturdy timber and stone, designed to house and care for various beasts and mounts. Equipped with individual stalls, a tack room, and a small practice ring, the stables provide excellent accommodations for horses, riding dogs, and exotic mounts like griffins or wyverns. ",
+        "bold": false
+      },
+      {
+        "text": "The stables can house up to 4 Large or smaller mounts, or 2 Huge mounts. Mounts housed in the stables receive superior care, granting them a bonus 10 feet to their movement speed for 24 hours after being taken out.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Workshop",
+    "tier": 2,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The workshop is a meticulously organised and well-equipped space, designed to cater to artisans and crafters. Constructed from sturdy wood and reinforced with metal fittings, it features large windows for natural light and ventilation. The interior is lined with workbenches, storage cabinets, and a variety of tools hanging neatly on the walls. A central worktable serves as the heart of the workshop, surrounded by specialised equipment for the chosen craft, such as anvils for blacksmiths, looms for weavers, or potter’s wheels for potters. Accents like a small forge, kiln, or drafting table are added depending on the primary craft practised here. ",
+        "bold": false
+      },
+      {
+        "text": "When the workshop is constructed, the owner chooses one specific type of artisan’s tools (e.g., blacksmith’s tools, leatherworker’s tools, jeweler’s tools). Any owner or permanent resident who uses the designated tools in the workshop gains a +3 bonus to any crafting rolls made with those tools.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Guard Barracks",
+    "tier": 3,
+    "repeatable": true,
+    "description": [
+      {
+        "text": "The guard barracks are a sturdy, fortified structure built from heavy stone and timber. It includes living space, a training yard, and an armoury, designed to house a contingent of guards who maintain security for the premises. ",
+        "bold": false
+      },
+      {
+        "text": "You can have up to 5 guards in a Barracks. Each guard uses the Guard stat block from the Monster Manual. If the premise is ever under attack, the guards can be used by the player or the GM to defend it. In addition, the presence of the barracks boosts the owner’s reputation and influence within the city. This grants them a +1 bonus per Barrack on Persuasion and Intimidation checks when dealing with city officials and local criminals, as their investment in public safety is widely recognized and respected.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Magical Warding",
+    "tier": 3,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "Expert scholars and clerics infuse the walls and doors with protective runes granting resistance to magical spying and attacks on the premises. ",
+        "bold": false
+      },
+      {
+        "text": "This expansion grants you both the Hallow and Private Sanctum spells active on your building. You choose which effects are active from the spells when you take this expansion, and you can choose if any specific rooms or other expansions are not covered by the spells. If the protected areas are targeted by a Dispel Magic, they become inert for 1 hour instead of being dispelled.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Training Room",
+    "tier": 3,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The training room is a robust, well-equipped facility designed for combat and physical training. It features various combat dummies, weapon racks filled with different types of arms, and areas marked for sparring and tactical manoeuvres. The walls are lined with mirrors for technique refinement, and the floor is padded to reduce the risk of injury. High ceilings accommodate aerial or acrobatic training, making the space versatile for all forms of combat preparation. ",
+        "bold": false
+      },
+      {
+        "text": "Any character who trains in this room for one hour gains a temporary bonus of 1d4 to their weapon attacks, lasting until they next finish a Short or Long rest. In addition, they gain a +3 bonus to their next 3 rolls made for the Pit Fighting downtime activity.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Banquet Hall",
+    "tier": 4,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "A large room complete with long tables, chairs, and adjacent kitchen, lit by ornate candelabras and chandeliers. The smell of well-cooked meals long passed lingers in this place, welcoming guests and residents with the promise of a full, satisfied belly. ",
+        "bold": false
+      },
+      {
+        "text": "Any character that consumes a meal in this room gains the effects of the Aid spell until they next finish a Short or Long rest. If the meal was prepared by an individual with proficiency with the cook’s utensils, those consuming it instead gain the effects of the Aid spell cast at level 3.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Tavern",
+    "tier": 4,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "Relaxation and drink are essential to adventurers and garrisoned soldiers alike. A tavern always carries within it the often sweet fragrance of what it brews, from plum brandy to apple cider to hoppy ale to refined wine. Typically, taverns find themselves filled with the heat and crackling staccato of a log fire, the honeyed lyrics of bardsong, and the words whispered between furtive folk. ",
+        "bold": false
+      },
+      {
+        "text": "The presence of a tavern gives the owner and permanent residents of this structure advantage on all Charisma (Persuasion) checks involving those using the tavern. In addition, the tavern generates 1d20+10 gold once per month and gives the owner a permanent Tavern Worker Informant as part of the Informants downtime which cannot be lost and does not count towards their total informants. Finally, all drinks in this tavern ordered by the owner of the structure or their allies are free, and the tavern provides private rooms for up to 8 creatures to live comfortably.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Theatre",
+    "tier": 4,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "A large hall complete with seating, a large stage, and excellent acoustics. This room is well equipped for plays, concerts, and speeches, making them feel that much more true-to-life. ",
+        "bold": false
+      },
+      {
+        "text": "When on the stage, the owner and their allies gain advantage on all Charisma rolls. In addition, if a character proficient in Performance spends an hour on stage, they and any of their allies present gain a point of Inspiration that is separate to GM Inspiration and lasts until they finish their next Short or Long rest.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Planning Room",
+    "tier": 4,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "Improperly planned, war and adventures can be a nightmare. With adequate planning, supply lines, and intelligence, though, these become a much more feasible enterprise. ",
+        "bold": false
+      },
+      {
+        "text": "When the Owner or a Permanent Resident spends at least 1 hour planning here before an event such as an adventure, any travel time required before their next Short or Long rest is halved. In addition, owners and permanent residents here gain a 1d4 bonus to attack rolls and damage rolls with weapon attacks when defending this land or the city it resides in.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Armoury",
+    "tier": 5,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The armoury is a secure, meticulously organised facility, reinforced with thick stone walls and iron doors. Inside, an impressive array of weaponry lines the walls, from finely crafted swords and axes to specialised polearms and crossbows. Each weapon is displayed on racks or mounted on the wall, with a designated area for armour sets and protective gear. The atmosphere is one of solemn respect for the tools of battle, and the air is tinged with the scent of oiled metal and leather. ",
+        "bold": false
+      },
+      {
+        "text": "Owners always have any mundane weapon that is sold at the blacksmiths available here if they need it. These weapons cannot be sold and if they are handed or traded they cannot gain another of that weapon until it has been returned. In addition, owners and Permanent Residents who keep their weapons here can re-roll the damage on each weapon once per day, they must take the new result.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Crafting Stations",
+    "tier": 5,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The crafting stations expansion is a series of dedicated workspaces each tailored to a specific craft. This expansive area features individual stations equipped with high-quality tools and materials suited for woodworking, metalworking, pottery, tailoring, and more. Bright, ample lighting and efficient storage solutions ensure that each artisan has a clean and organised environment to work in. The stations are designed to be highly ergonomic, with adjustable work surfaces and seating to accommodate various crafts and user preferences. ",
+        "bold": false
+      },
+      {
+        "text": "Owners and permanent residents who use the crafting stations for any crafting checks gain a +3 bonus to those checks. This bonus does not stack with the bonuses from the workshop expansion. In addition, owners and permanent residents always have the crafting tools they need present here.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Docks",
+    "tier": 5,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The waves lap lazily against wooden pilings and the bells of tall ships clang idly. The air is entwined with the briny smell of fresh fish and the loud conversation of burly dock workers as travellers come and go from this port of call. ",
+        "bold": false
+      },
+      {
+        "text": "A dock can only be built if your land is adjacent to an open water source. A number of ships equal to twice your structure’s total expansion points may dock safely at this expansion. A ship that has docked here safely overnight will travel at twice its normal speed for 8 hours after leaving port. In addition, at the end of each month you can roll 2d20+10 and gain gold equal to the roll from docking fees.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Marketplace",
+    "tier": 5,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "A large roadside area for travellers, filled with the smells of cooked food and pack animals. Visiting merchants bark their wares, enticing locals with colourful goods and services. ",
+        "bold": false
+      },
+      {
+        "text": "At the end of each month you gain a profit from the sales of the merchants equal to 2d20+10. In addition, you can spend 5 days of downtime to help the merchants and earn gold equal to 8d20+40.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Chapel",
+    "tier": 6,
+    "repeatable": true,
+    "description": [
+      {
+        "text": "A small chapel containing religious imagery, seating, iconography, and proper accoutrement. The air hums with the resonance of hymns, and the comforting soul of the divine. ",
+        "bold": false
+      },
+      {
+        "text": "While present within this expansion itself, the owners of this structure and permanent residents do not need material components when casting the Divination spell, and the chances of wrong information after the first casting is reduced by 20%. Wisdom (Religion) checks made here that deal with the deity, philosophy or religion the chapel is associated with have advantage. This expansion may be built multiple times, and each time a different religion or philosophy for the chapel must be chosen.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Observatory",
+    "tier": 6,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The observatory is an impressive structure, towering above its surroundings with a domed top that houses a large, sophisticated telescope. Constructed with sleek, dark stone that blends into the night sky, the observatory is both a scientific instrument and a marvel of architectural design. Large windows circle the structure, providing panoramic views of the heavens. Inside, the walls are lined with celestial maps and ancient astrological charts, alongside modern tools for astronomical study. ",
+        "bold": false
+      },
+      {
+        "text": "Owners or permanent residents using the observatory can gain advantage on any Intelligence (Arcana) or Wisdom (Survival) checks related to celestial events, navigation by stars, or predicting weather patterns. In addition, if the owner or a permanent resident spends at least 1 hour star gazing, they gain a point of Inspiration that is separate to GM Inspiration and lasts until they finish their next Short or Long rest.",
+        "bold": true
+      }
+    ]
+  },
+
+  {
+    "id": 24,
+    "name": "Arcane Sanctum",
+    "tier": 7,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The Arcane Sanctum is a majestic and secluded area, crafted from enchanted stones that shimmer with a subtle luminescence. Its architecture is a blend of sharp, geometric angles and smooth curves, creating an almost otherworldly appearance. Inside, the Sanctum is lined with rich tapestries depicting mystical symbols and historic magical events. ",
+        "bold": false
+      },
+      {
+        "text": "The Sanctum acts as a reservoir of magical power. Within its walls, the owner or a permanent resident who can cast spells may use the following spells without expending spell slots or needing components; once each spell has been cast its listed amount of times, it cannot be cast again until the following dawn. [At will: Identify, 3/day: Sending, 1/day: Teleportation Circle] In addition to the spellcasting benefits, the Sanctum features a permanent Teleportation Circle, the sigils of which are chosen by the owner at construction.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Lecture Halls",
+    "tier": 7,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "(Can only be built in a building used as an academy) The lecture halls are a sophisticated and spacious addition to any academic institution, designed to accommodate a large number of students and scholars. Each hall is outfitted with tiered seating, large blackboards, and advanced magical projectors that can display intricate diagrams or historical events in 3D. ",
+        "bold": false
+      },
+      {
+        "text": "The lecture halls significantly increase the capacity of an academy to host students and conduct various courses. This expansion boosts the institution’s reputation and allows it to charge tuition fees for the education provided. Financially, this translates into the hall generating 1d10 x 100 gold once per month.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Dormitories",
+    "tier": 8,
+    "repeatable": false,
+    "description": [
+      {
+        "text": " (Can only be built in a building used as a school or academy) The dormitories are a well-constructed complex, designed to provide living quarters for up to 50 students. The buildings are built from durable, warm-coloured stone and timber, featuring spacious, well-lit rooms that are furnished to support both study and relaxation. Communal areas include study lounges, small kitchens, and recreational rooms equipped with games and comfortable seating. ",
+        "bold": false
+      },
+      {
+        "text": "By providing housing for up to 50 students, the dormitories significantly increase the capacity of an academy to attract and retain students from distant regions who might otherwise be unable to attend. This expansion not only boosts the academy’s prestige but also substantially increases its financial income. It generates (1d10+5) x 100 gold once per month.",
+        "bold": true
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Research Library",
+    "tier": 8,
+    "repeatable": false,
+    "description": [
+      {
+        "text": "The Research Library is an architecturally stunning addition to any scholarly establishment, featuring high vaulted ceilings and walls lined with bookshelves crafted from rich mahogany. Each shelf is laden with an extensive collection of books, scrolls, and ancient manuscripts, covering a myriad of subjects from arcane magic and exotic lore to historical records and scientific treatises. The library is equipped with comfortable reading nooks, large oak tables for spreading out maps and documents, and magical lamps that provide perfect lighting for reading without damaging the delicate pages. ",
+        "bold": false
+      },
+      {
+        "text": "The Research Library provides a conducive environment for intensive study and research. Any character who spends time researching here gains advantage on a skill check made to obtain knowledge. This could include Intelligence (History), Intelligence (Arcana), Intelligence (Nature), and other knowledge-based checks. In addition, even if a skill check to obtain knowledge is failed or too obscure for the expansion to have information on, it can still provide characters hints or leads on where to go to obtain the information they need.",
+        "bold": true
+      }
+    ]
+  }
+]
