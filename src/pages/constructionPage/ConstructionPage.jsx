@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Select from "react-select";
-import ExpansionDetails from "./expansionDetails";
-import ConstructionBasket from "./ConstructionBasket";
+import ExpansionDetails from "./ExpansionDetails.jsx";
+import ConstructionBasket from "./ConstructionBasket.jsx";
 import ArrowButton from "./components/ArrowButton.jsx";
 
 function ConstructionPage() {
