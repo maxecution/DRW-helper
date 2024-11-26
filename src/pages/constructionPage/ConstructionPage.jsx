@@ -13,7 +13,7 @@ function ConstructionPage() {
   const [unusedSlotsAmount, setUnusedSlotsAmount] = useState(0);
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}src/data/expansions.json`)
+    fetch(`${import.meta.env.BASE_URL}expansions.json`)
       .then((response) => response.json())
       .then((data) => setConstructionData(data));
   }, []);
