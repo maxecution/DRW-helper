@@ -110,7 +110,7 @@ function ConstructionBasket({
             <strong>Additional Structures Needed:</strong> {additionalStructuresNeeded} |{" "}
             <strong>Total Structure Cost:</strong> {totalStructureCost} gp
           </li>
-          <li className='text-nowrap'>
+          <li className='sm:text-nowrap'>
             <strong>Build Time:</strong> {totalBuildTime} days |{" "}
             <span className='text-yellow-500'>
               <strong>Total Additional Cost:</strong> {totalAdditionalCost + totalExpansionsCost} gp

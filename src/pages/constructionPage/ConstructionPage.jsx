@@ -144,7 +144,7 @@ function ConstructionPage() {
           </div>
 
           {/* Existing Structures */}
-          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+          <div className='flex flex-row items-center justify-between gap-4'>
             <label
               htmlFor='existing-structure-amount'
               className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
@@ -176,7 +176,7 @@ function ConstructionPage() {
           </div>
 
           {/* Unused Slots */}
-          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+          <div className='flex flex-row items-center justify-between gap-4'>
             <label
               htmlFor='unused-slots-amount'
               className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
@@ -213,7 +213,7 @@ function ConstructionPage() {
           </div>
 
           {/* Empty Plots */}
-          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+          <div className='flex flex-row items-center justify-between gap-4'>
             <label
               htmlFor='empty-plots-amount'
               className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
@@ -245,9 +245,9 @@ function ConstructionPage() {
           </div>
 
           {/* Clear Button */}
-          <div className='items-center'>
+          <div className='items-center text-center'>
             <button
-              className='font-bold border border-gray-600 bg-gray-700 hover:bg-gray-600 text-white text-right py-2 px-6 rounded-md w-full sm:w-auto'
+              className='font-bold border border-gray-600 bg-gray-700 hover:bg-gray-600 text-white py-2 px-6 rounded-md'
               onClick={handleClear}>
               Clear
             </button>
