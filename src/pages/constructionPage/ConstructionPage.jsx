@@ -132,7 +132,7 @@ function ConstructionPage() {
               Select an expansion:
             </label>
             <Select
-              className='text-black w-full sm:w-1/2'
+              className='text-black w-full sm:w-1/2 '
               id='expansion-select'
               options={expansionOptions}
               value={expansion ? expansionOptions.find((opt) => opt.value === expansion.id) : null}
@@ -265,7 +265,7 @@ function ConstructionPage() {
       </div>
 
       {/* Construction Basket Section */}
-      <div className='bg-gray-800 p-6 text-center'>
+      <div className='w-full bg-gray-800 p-6 text-center'>
         <ConstructionBasket
           expansions={addedExpansions}
           onRemove={handleRemoveExpansion}

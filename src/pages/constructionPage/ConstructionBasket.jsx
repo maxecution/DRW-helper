@@ -50,7 +50,7 @@ function ConstructionBasket({
   }
 
   return (
-    <div className='w-full max-w-full sm:max-w-lg mx-auto p-6 bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600'>
+    <div className='w-full max-w-full mx-auto p-6 bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600'>
       <h2 className='text-3xl font-semibold mb-4 text-center text-yellow-400'>
         Construction Basket
       </h2>
