@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import ExpansionDetails from "./ExpansionDetails.jsx";
 import ConstructionBasket from "./ConstructionBasket.jsx";
-import ArrowButton from "./components/ArrowButton.jsx";
+import ExistingStructuresInput from "./ExistingStructuresInput.jsx";
+import UnusedSlotsInput from "./UnusedSlotsInput .jsx";
+import EmptyPlotsInput from "./EmptyPlotsInput.jsx";
 
 function ConstructionPage() {
   const [constructionData, setConstructionData] = useState([]);
@@ -31,66 +33,6 @@ function ConstructionPage() {
 
     const selectedExpansion = constructionData.find((e) => e.id === selectedOption.value);
     setExpansion(selectedExpansion);
-  };
-
-  const handleEmptyPlotsAmountChange = (e) => {
-    let value = Number(e.target.value);
-    if (value < 0) value = 0;
-    if (!isNaN(value) && value !== "") {
-      setEmptyPlotsAmount(value);
-    } else {
-      setEmptyPlotsAmount(0);
-    }
-  };
-
-  const handleEmptyPlotsAmountBlur = (e) => {
-    if (Number(e.target.value) < 0) {
-      window.alert("You cannot enter a negative number.");
-      e.target.value = 0;
-      setEmptyPlotsAmount(0);
-    }
-  };
-
-  const handleExistingStructureAmountChange = (e) => {
-    let value = Number(e.target.value);
-    if (value < 0) value = 0;
-    if (!isNaN(value) && value !== "") {
-      setExistingStructureAmount(value);
-    } else {
-      setExistingStructureAmount(0);
-    }
-  };
-
-  const handleExistingStructureAmountBlur = (e) => {
-    if (Number(e.target.value) < 0) {
-      window.alert("You cannot enter a negative number.");
-      e.target.value = 0;
-      setExistingStructureAmount(0);
-    }
-  };
-
-  const handleUnusedSlotsAmountChange = (e) => {
-    let value = Number(e.target.value);
-    if (value < 0) value = 0;
-    if (value > existingStructureAmount) value = existingStructureAmount;
-    if (!isNaN(value) && value !== "") {
-      setUnusedSlotsAmount(value);
-    } else {
-      setUnusedSlotsAmount(0);
-    }
-  };
-
-  const handleUnusedSlotsAmountBlur = (e) => {
-    if (Number(e.target.value) < 0) {
-      window.alert("You cannot enter a negative number.");
-      e.target.value = 0;
-      setUnusedSlotsAmount(0);
-    }
-    if (Number(e.target.value) > existingStructureAmount) {
-      window.alert("You cannot enter a number higher than your existing structures.");
-      e.target.value = existingStructureAmount;
-      setUnusedSlotsAmount(existingStructureAmount);
-    }
   };
 
   const handleClear = () => {
@@ -144,105 +86,20 @@ function ConstructionPage() {
           </div>
 
           {/* Existing Structures */}
-          <div className='flex flex-row items-center justify-between gap-4'>
-            <label
-              htmlFor='existing-structure-amount'
-              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
-              Number of existing structures:
-            </label>
-            <div className='flex items-center'>
-              <ArrowButton
-                elementId='existing-structure-amount'
-                direction='up'
-                onClick={() => setExistingStructureAmount((prev) => prev + 1)}
-              />
-              <input
-                className='border border-gray-600 bg-gray-700 text-white text-right p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
-                type='number'
-                value={existingStructureAmount}
-                min={0}
-                id='existing-structure-amount'
-                onChange={handleExistingStructureAmountChange}
-                onBlur={handleExistingStructureAmountBlur}
-              />
-              <ArrowButton
-                elementId='existing-structure-amount'
-                direction='down'
-                onClick={() => {
-                  setExistingStructureAmount((prev) => (prev > 0 ? prev - 1 : prev));
-                }}
-              />
-            </div>
-          </div>
+          <ExistingStructuresInput
+            value={existingStructureAmount}
+            setValue={setExistingStructureAmount}
+          />
 
           {/* Unused Slots */}
-          <div className='flex flex-row items-center justify-between gap-4'>
-            <label
-              htmlFor='unused-slots-amount'
-              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
-              Number of un-used slots:
-            </label>
-            <div className='flex items-center'>
-              <ArrowButton
-                elementId='unused-slots-amount'
-                direction='up'
-                onClick={() => {
-                  setUnusedSlotsAmount((prev) =>
-                    prev < existingStructureAmount ? prev + 1 : prev
-                  );
-                }}
-              />
-              <input
-                className='border border-gray-600 bg-gray-700 text-white text-right p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
-                type='number'
-                value={unusedSlotsAmount}
-                min={0}
-                max={existingStructureAmount}
-                id='unused-slots-amount'
-                onChange={handleUnusedSlotsAmountChange}
-                onBlur={handleUnusedSlotsAmountBlur}
-              />
-              <ArrowButton
-                elementId='unused-slots-amount'
-                direction='down'
-                onClick={() => {
-                  setUnusedSlotsAmount((prev) => (prev > 0 ? prev - 1 : prev));
-                }}
-              />
-            </div>
-          </div>
+          <UnusedSlotsInput
+            value={unusedSlotsAmount}
+            setValue={setUnusedSlotsAmount}
+            max={existingStructureAmount}
+          />
 
           {/* Empty Plots */}
-          <div className='flex flex-row items-center justify-between gap-4'>
-            <label
-              htmlFor='empty-plots-amount'
-              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
-              Number of empty plots:
-            </label>
-            <div className='flex items-center'>
-              <ArrowButton
-                elementId='empty-plots-amount'
-                direction='up'
-                onClick={() => setEmptyPlotsAmount((prev) => prev + 1)}
-              />
-              <input
-                className='border border-gray-600 bg-gray-700 text-white text-right p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
-                type='number'
-                value={emptyPlotsAmount}
-                min={0}
-                id='empty-plots-amount'
-                onChange={handleEmptyPlotsAmountChange}
-                onBlur={handleEmptyPlotsAmountBlur}
-              />
-              <ArrowButton
-                elementId='empty-plots-amount'
-                direction='down'
-                onClick={() => {
-                  setEmptyPlotsAmount((prev) => (prev > 0 ? prev - 1 : prev));
-                }}
-              />
-            </div>
-          </div>
+          <EmptyPlotsInput value={emptyPlotsAmount} setValue={setEmptyPlotsAmount} />
 
           {/* Clear Button */}
           <div className='items-center text-center'>

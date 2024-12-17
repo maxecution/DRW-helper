@@ -8,10 +8,18 @@ const ArrowButton = ({ elementId, direction, onClick, isDisabled = false }) => {
       return;
     }
 
+    let currentValue = parseInt(element.value, 10); // Get the current value as an integer
+
+    // Validation: Make sure the current value is a valid number
+    if (isNaN(currentValue)) {
+      console.warn(`Invalid number: "${element.value}"`);
+      return;
+    }
+
     if (direction === "up") {
-      element.stepUp();
+      currentValue += 1; // Increment by 1
     } else if (direction === "down") {
-      element.stepDown();
+      currentValue -= 1; // Decrement by 1
     }
 
     if (onClick) onClick();
