@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import ToggleButton from "./toggleButton";
+import ToggleButton from "./ToggleButton.jsx";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
