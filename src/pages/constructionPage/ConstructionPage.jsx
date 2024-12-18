@@ -54,7 +54,7 @@ function ConstructionPage() {
   };
 
   return (
-    <div className='flex flex-col min-h-screen bg-gray-900 text-white w-full max-w-full'>
+    <div className='flex flex-col min-h-min bg-gray-900 text-white w-full max-w-full'>
       {/* Main Header */}
       <header className='text-center py-6 bg-gray-800 shadow-lg'>
         <h1 className='text-2xl font-bold text-yellow-400 sm:text-3xl md:text-4xl'>
