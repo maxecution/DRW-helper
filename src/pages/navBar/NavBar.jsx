@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import ToggleButton from "./toggleButton";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,15 +9,8 @@ function Navbar() {
   return (
     <nav className='bg-gray-800 text-white p-4 shadow-md fixed top-0 w-full z-10'>
       <div className='max-w-7xl mx-auto flex justify-between items-center'>
-        {/* Light/Dark Mode Toggle */}
-        <div className='flex items-center'>
-          <button
-            className='w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition'
-            title='Toggle Light/Dark Mode'>
-            <span className='sr-only'>Toggle Light/Dark Mode</span>
-            <div className='w-4 h-4 bg-yellow-400 rounded-full'></div>
-          </button>
-        </div>
+        {/* TODO: Light/Dark Mode Toggle */}
+        <ToggleButton />
 
         {/* Title (Hidden on small screens) */}
         <h1 className='text-3xl font-bold text-center sm:block hidden'>

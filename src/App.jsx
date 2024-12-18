@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes as Switch } from "react-router-dom";
 import ConstructionPage from "./pages/constructionPage/ConstructionPage.jsx";
-import HelloWorld from "./pages/HomePage/HelloWorld.jsx";
-import Navbar from "./pages/components/NavBar.jsx";
+import HelloWorld from "./pages/homePage/HelloWorld.jsx";
+import Navbar from "./pages/navBar/NavBar.jsx";
 
 function App() {
   return (
