@@ -7,7 +7,7 @@ function HelloWorld() {
       {/* Hero Section */}
       <header className='relative bg-gray-900 py-20 text-center shadow-lg'>
         <div className='absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-800 to-transparent opacity-75'></div>
-        <div className='relative z-10 space-y-6'>
+        <div className='relative space-y-6'>
           <h1 className='text-4xl md:text-5xl font-extrabold text-yellow-400'>
             Welcome to the Dark Road West - Helper Tool
           </h1>

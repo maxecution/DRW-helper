@@ -51,8 +51,16 @@ function Navbar() {
 
       {/* Collapsible Menu for Small Screens */}
       {isMenuOpen && (
-        <div className='sm:hidden mt-2 bg-gray-700 rounded-md shadow-lg p-4'>
+        <div className='sm:hidden mt-2 bg-gray-700 rounded-md shadow-lg p-4 z-20'>
           <ul className='space-y-4'>
+            <li>
+              <Link
+                to='/max-hp-calc'
+                className='block hover:text-yellow-400 transition'
+                onClick={() => setIsMenuOpen(false)}>
+                Max HP
+              </Link>
+            </li>
             <li>
               <Link
                 to='/level-up-calc'
