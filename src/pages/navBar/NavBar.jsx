@@ -24,6 +24,11 @@ function Navbar() {
           {/* Desktop Links */}
           <ul className='hidden sm:flex space-x-6'>
             <li>
+              <Link to='/max-hp-calc' className='hover:text-yellow-400 transition'>
+                Max HP
+              </Link>
+            </li>
+            <li>
               <Link to='/level-up-calc' className='hover:text-yellow-400 transition'>
                 Level-Up
               </Link>
