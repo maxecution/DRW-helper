@@ -55,6 +55,14 @@ function Navbar() {
           <ul className='space-y-4'>
             <li>
               <Link
+                to='/'
+                className='block hover:text-yellow-400 transition'
+                onClick={() => setIsMenuOpen(false)}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
                 to='/max-hp-calc'
                 className='block hover:text-yellow-400 transition'
                 onClick={() => setIsMenuOpen(false)}>
