@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { calculateLevelUpDates } from "../../utils/LevelUpUtils.js";
+import { Tooltip } from "react-tooltip";
+import { handleNumberChange } from "../../utils/InputUtils.js";
 
 function LevelUpForm() {
   const [currentLevel, setCurrentLevel] = useState("");
@@ -86,13 +88,13 @@ function LevelUpForm() {
   };
 
   return (
-    <div className='mb-5'>
+    <div className='min-h-screen bg-gray-800 flex flex-col items-center p-6'>
       <form className='space-y-6'>
         <div className='grid grid-cols-2 gap-4'>
-          <div>
+          <div id='current-level-block'>
             <label
               htmlFor='current-level'
-              className='block text-sm font-semibold text-gray-600 mb-1'>
+              className='block text-sm font-semibold text-yellow-400 mb-1'>
               Current Level
             </label>
             <input
@@ -100,20 +102,30 @@ function LevelUpForm() {
               id='current-level'
               name='current-level'
               value={currentLevel}
-              onChange={(e) => setCurrentLevel(Number(e.target.value))}
+              onChange={(e) => handleNumberChange(e.target.value, 3, 19, setCurrentLevel)}
+              onBlur={(e) => {
+                if (e.target.value === "") {
+                  setCurrentLevel(3);
+                }
+              }}
               min='3'
               max='19'
               placeholder='3-19'
-              className='w-full px-3 py-2 border border-gray-300 rounded-md'
+              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              data-tooltip-id='current-level-tooltip'
             />
-            {errors.currentLevel && (
-              <span className='text-red-500 text-xs mt-1'>{errors.currentLevel}</span>
-            )}
+            <Tooltip
+              id='current-level-tooltip'
+              place='top-end'
+              variant='error'
+              isOpen={errors.currentLevel}>
+              {errors.currentLevel}
+            </Tooltip>
           </div>
-          <div>
+          <div id='desired-level-block'>
             <label
               htmlFor='desired-level'
-              className='block text-sm font-semibold text-gray-600 mb-1'>
+              className='block text-sm font-semibold text-yellow-400 mb-1'>
               Desired Level
             </label>
             <input
@@ -121,23 +133,33 @@ function LevelUpForm() {
               id='desired-level'
               name='desired-level'
               value={desiredLevel}
-              onChange={(e) => setDesiredLevel(Number(e.target.value))}
+              onChange={(e) => handleNumberChange(e.target.value, 4, 20, setDesiredLevel)}
+              onBlur={(e) => {
+                if (e.target.value === "") {
+                  setDesiredLevel(4);
+                }
+              }}
               min='4'
               max='20'
               placeholder='4-20'
-              className='w-full px-3 py-2 border border-gray-300 rounded-md'
+              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              data-tooltip-id='desired-level-tooltip'
             />
-            {errors.desiredLevel && (
-              <span className='text-red-500 text-xs mt-1'>{errors.desiredLevel}</span>
-            )}
+            <Tooltip
+              id='desired-level-tooltip'
+              place='top-start'
+              variant='error'
+              isOpen={errors.desiredLevel}>
+              {errors.desiredLevel}
+            </Tooltip>
           </div>
         </div>
 
         <div className='grid grid-cols-2 gap-4'>
-          <div>
+          <div id='available-xp-block'>
             <label
               htmlFor='available-xp'
-              className='block text-sm font-semibold text-gray-600 mb-1'>
+              className='block text-sm font-semibold text-yellow-400 mb-1'>
               Available XP
             </label>
             <input
@@ -145,20 +167,30 @@ function LevelUpForm() {
               id='available-xp'
               name='available-xp'
               value={availableXp}
-              onChange={(e) => setAvailableXp(Number(e.target.value))}
+              onChange={(e) => handleNumberChange(e.target.value, 0, 999, setAvailableXp)}
+              onBlur={(e) => {
+                if (e.target.value === "") {
+                  setAvailableXp(0);
+                }
+              }}
               min='0'
               max='999'
               placeholder='0-999'
-              className='w-full px-3 py-2 border border-gray-300 rounded-md'
+              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              data-tooltip-id='available-xp-tooltip'
             />
-            {errors.availableXp && (
-              <span className='text-red-500 text-xs mt-1'>{errors.availableXp}</span>
-            )}
+            <Tooltip
+              id='available-xp-tooltip'
+              place='top-end'
+              variant='error'
+              isOpen={errors.availableXp}>
+              {errors.availableXp}
+            </Tooltip>
           </div>
-          <div>
+          <div id='last-leveled-date-block'>
             <label
               htmlFor='last-leveled-date'
-              className='block text-sm font-semibold text-gray-600 mb-1'>
+              className='block text-sm font-semibold text-yellow-400 mb-1'>
               Last Level Up Date
             </label>
             <input
@@ -166,12 +198,22 @@ function LevelUpForm() {
               id='last-leveled-date'
               name='last-leveled-date'
               value={lastLeveledDate}
-              onChange={(e) => setLastLeveledDate(e.target.value)}
-              className='w-full px-3 py-2 border border-gray-300 rounded-md'
+              onChange={(e) => handleNumberChange(e.target.value, 0, 999, setLastLeveledDate)}
+              onBlur={(e) => {
+                if (e.target.value === "") {
+                  setLastLeveledDate("");
+                }
+              }}
+              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              data-tooltip-id='last-leveled-date-tooltip'
             />
-            {errors.lastLeveledDate && (
-              <span className='text-red-500 text-xs mt-1'>{errors.lastLeveledDate}</span>
-            )}
+            <Tooltip
+              id='last-leveled-date-tooltip'
+              place='top-start'
+              variant='error'
+              isOpen={errors.lastLeveledDate}>
+              {errors.lastLeveledDate}
+            </Tooltip>
           </div>
         </div>
 

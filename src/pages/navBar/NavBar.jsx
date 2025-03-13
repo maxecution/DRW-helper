@@ -1,28 +1,33 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
-import ToggleButton from "./ToggleButton.jsx";
+// import ToggleButton from "./ToggleButton.jsx";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className='bg-gray-800 text-white p-4 shadow-md fixed top-0 w-full z-10'>
-      <div className='max-w-7xl mx-auto flex justify-between items-center'>
+      <div className='max-w-full mx-auto flex justify-between items-center'>
         {/* TODO: Light/Dark Mode Toggle */}
-        <ToggleButton />
+        {/* <ToggleButton /> */}
 
         {/* Title (Hidden on small screens) */}
-        <h1 className='text-3xl font-bold text-center sm:block hidden'>
+        <h1 className='text-3xl font-bold absolute left-1/2 transform -translate-x-1/2 sm:block hidden'>
           <Link to='/' className='hover:text-yellow-400 transition'>
             DRW Helper
           </Link>
         </h1>
 
         {/* Links */}
-        <div className='flex items-center'>
+        <div className='ml-auto flex items-center'>
           {/* Desktop Links */}
-          <ul className='hidden sm:flex space-x-6'>
+          <ul className='hidden lg:flex space-x-6'>
+            <li>
+              <Link to='/general-rules' className='hover:text-yellow-400 transition'>
+                General Rules
+              </Link>
+            </li>
             <li>
               <Link to='/max-hp-calc' className='hover:text-yellow-400 transition'>
                 Max HP
@@ -42,7 +47,7 @@ function Navbar() {
 
           {/* Burger Menu (Visible on small screens) */}
           <button
-            className='sm:hidden block text-2xl hover:text-yellow-400 transition'
+            className='lg:hidden block text-2xl hover:text-yellow-400 transition'
             onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <FiX /> : <FiMenu />}
           </button>

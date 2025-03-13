@@ -1,8 +1,8 @@
 import React from "react";
-import ArrowButton from "./components/ArrowButton.jsx";
 import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputUtils.js";
 import { TbInfoHexagon } from "react-icons/tb";
 import Tooltip from "@mui/material/Tooltip";
+import ArrowButton from "../../utils/ArrowButton.jsx";
 
 function ExistingStructuresInput({ value, setValue, min = 0, max }) {
   const infoText = "The number of un-used slots cannot exceed the number of existing structures.";
@@ -31,13 +31,17 @@ function ExistingStructuresInput({ value, setValue, min = 0, max }) {
         />
         <input
           id='unused-slots-amount'
-          type='text'
+          type='number'
           value={value}
           min={0}
           max={max}
           onChange={(e) => handleNumberChange(e.target.value, min, max, setValue)}
-          onBlur={(e) => handleNumberChange(e.target.value, min, max, setValue)}
-          className='border border-gray-600 bg-gray-700 text-white text-right p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+          onBlur={(e) => {
+            if (e.target.value === "") {
+              setValue(min);
+            }
+          }}
+          className='border border-gray-600 bg-gray-700 text-white text-center p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
         />
         <ArrowButton
           elementId='unused-slots-amount'

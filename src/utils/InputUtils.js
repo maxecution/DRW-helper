@@ -1,7 +1,12 @@
 export const handleNumberChange = (newValue, min, max, setValue) => {
+  // Allow the input field to be temporarily empty
+  if (newValue === "") {
+    setValue("");
+    return;
+  }
   // Remove any leading zeros and check if the number is a positive integer
   let sanitizedValue = newValue.replace(/^0+/, ""); // Remove leading zeros
-  if (sanitizedValue === "") sanitizedValue = "0"; // If empty, default to 0
+  if (sanitizedValue === "") sanitizedValue = min; // If empty, default to 0
 
   // Validate if the input is a positive integer
   if (!/^\d+$/.test(sanitizedValue)) {

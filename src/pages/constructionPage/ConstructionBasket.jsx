@@ -131,8 +131,8 @@ ConstructionBasket.propTypes = {
     })
   ).isRequired,
   onRemove: PropTypes.func.isRequired,
-  emptyPlotsAmount: PropTypes.number.isRequired,
-  existingStructureAmount: PropTypes.number.isRequired,
-  unusedSlotsAmount: PropTypes.number.isRequired,
+  emptyPlotsAmount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  existingStructureAmount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  unusedSlotsAmount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 export default ConstructionBasket;
