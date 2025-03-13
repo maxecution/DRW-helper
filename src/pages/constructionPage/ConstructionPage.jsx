@@ -74,7 +74,6 @@ function ConstructionPage() {
               Select an expansion:
             </label>
             <Select
-              className='text-black w-full sm:w-1/2 '
               id='expansion-select'
               options={expansionOptions}
               value={expansion ? expansionOptions.find((opt) => opt.value === expansion.id) : null}
@@ -82,6 +81,31 @@ function ConstructionPage() {
               isSearchable={true}
               isClearable={true}
               placeholder='Expansions...'
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#374151",
+                  color: "#ffffff",
+                  borderColor: "#1f2937",
+                }),
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: "#ffffff",
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#1f2937",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected ? "#1f2937" : "#374151",
+                  color: "#ffffff",
+                  "&:hover": {
+                    backgroundColor: "#4b5563",
+                  },
+                }),
+              }}
+              className='w-full sm:w-1/2'
             />
           </div>
 

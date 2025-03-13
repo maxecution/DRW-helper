@@ -1,4 +1,4 @@
-import ArrowButton from "./components/ArrowButton.jsx";
+import ArrowButton from "../../utils/ArrowButton.jsx";
 import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputUtils.js";
 
 function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
@@ -15,15 +15,16 @@ function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
         />
         <input
           id='existing-structure-amount'
-          type='text'
+          type='number'
           value={value}
           min={min}
           onChange={(e) => handleNumberChange(e.target.value, min, max, setValue)}
           onBlur={(e) => {
-            handleNumberChange(e.target.value, min, max, setValue);
-            console.log("Updated value is: " + value);
+            if (e.target.value === "") {
+              setValue(min);
+            }
           }}
-          className='border border-gray-600 bg-gray-700 text-white text-right p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+          className='border border-gray-600 bg-gray-700 text-white text-center p-2 rounded-md w-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
         />
         <ArrowButton
           elementId='existing-structure-amount'
