@@ -5,6 +5,7 @@ import ConstructionBasket from "./ConstructionBasket.jsx";
 import ExistingStructuresInput from "./ExistingStructuresInput.jsx";
 import UnusedSlotsInput from "./UnusedSlotsInput .jsx";
 import EmptyPlotsInput from "./EmptyPlotsInput.jsx";
+import { selectStyle } from "../../utils/Styles.js";
 
 function ConstructionPage() {
   const [constructionData, setConstructionData] = useState([]);
@@ -81,30 +82,7 @@ function ConstructionPage() {
               isSearchable={true}
               isClearable={true}
               placeholder='Expansions...'
-              styles={{
-                control: (provided) => ({
-                  ...provided,
-                  backgroundColor: "#374151",
-                  color: "#ffffff",
-                  borderColor: "#1f2937",
-                }),
-                singleValue: (provided) => ({
-                  ...provided,
-                  color: "#ffffff",
-                }),
-                menu: (provided) => ({
-                  ...provided,
-                  backgroundColor: "#1f2937",
-                }),
-                option: (provided, state) => ({
-                  ...provided,
-                  backgroundColor: state.isSelected ? "#1f2937" : "#374151",
-                  color: "#ffffff",
-                  "&:hover": {
-                    backgroundColor: "#4b5563",
-                  },
-                }),
-              }}
+              styles={selectStyle}
               className='w-full sm:w-1/2'
             />
           </div>
