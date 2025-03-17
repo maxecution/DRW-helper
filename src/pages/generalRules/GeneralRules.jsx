@@ -68,6 +68,15 @@ function GeneralRules() {
   const panelCount = 5; // Change this to match Accordion.Panel count
   const [activePanels, setActivePanels] = useState(Array(panelCount).fill(false));
 
+  {
+    /* TODO: Ability Score Sidebar */
+  }
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
+
   const handleExpandAll = () => {
     setActivePanels(Array(panelCount).fill(true));
   };
@@ -93,10 +102,10 @@ function GeneralRules() {
   };
 
   return (
-    <div className='flex space-x-4'>
-      <div className='ml-4 flex flex-col items-center w-min'>
+    <div className='flex space-x-4 bg-gray-800'>
+      <div className='flex flex-col items-center ml-4 w-min'>
         {/* Ability Scores Section */}
-        <h1 className='text-xl font-medium text-yellow-400 text-nowrap mb-2'>Ability Scores</h1>
+        <h1 className='mb-2 text-xl font-medium text-yellow-400 text-nowrap'>Ability Scores</h1>
         <Level level={level} setLevel={setLevel} />
         <Stat ability='Strength' score={strScore} setScore={setStrScore} />
         <Stat ability='Dexterity' score={dexScore} setScore={setDexScore} />
@@ -107,21 +116,22 @@ function GeneralRules() {
       </div>
       <div className='w-full'>
         {/* Rules & Mechanics Section */}
-        <div className='flex flex-col items-center w-2/3'>
-          <div className='flex justify-between items-center w-full'>
-            <h1 className='text-xl font-medium text-yellow-400 text-nowrap mb-2 ml-4'>
+        <div className='flex flex-col items-center w-full sm:w-3/4'>
+          <div className='flex items-center justify-between w-full'>
+            <h1 className='mb-2 ml-4 mr-2 text-xl font-medium text-yellow-400 text-nowrap'>
               Rules & Mechanics
             </h1>
-            <div className='flex space-x-2 mb-2 mr-4'>
+            <div className='flex mb-2 mr-4 space-x-2'>
               <button
                 onClick={handleExpandAll}
-                className='px-1 py-1 text-white text-sm bg-gray-600 rounded-md'
+                className='px-1 py-1 text-sm text-white bg-gray-600 rounded-md'
                 data-tooltip-id='expand-tooltip'>
                 <FaExpand />
               </button>
               <Tooltip
                 id='expand-tooltip'
                 offset={3}
+                place='top-start'
                 noArrow
                 variant='dark'
                 className='z-50'
@@ -130,13 +140,14 @@ function GeneralRules() {
               </Tooltip>
               <button
                 onClick={handleCollapseAll}
-                className='px-1 py-1 text-white text-sm bg-gray-600 rounded-md'
+                className='px-1 py-1 text-sm text-white bg-gray-600 rounded-md'
                 data-tooltip-id='collapse-tooltip'>
                 <FaCompress />
               </button>
               <Tooltip
                 id='collapse-tooltip'
                 offset={3}
+                place='top-start'
                 noArrow
                 variant='dark'
                 className='z-50'
@@ -145,13 +156,13 @@ function GeneralRules() {
               </Tooltip>
             </div>
           </div>
-          <Accordion bordered className='text-white mx-4 w-full mb-4 overflow-visible'>
+          <Accordion bordered className='w-full mb-4 mr-4 overflow-visible text-white'>
             <Accordion.Panel
               header='Carrying Capacity'
               expanded={activePanels[0]}
               onSelect={() => handleTogglePanel(0)}>
               <div className='flex flex-col space-y-3'>
-                <div className='w-60 flex items-center gap-3'>
+                <div className='flex items-center gap-3 w-60'>
                   <span className='font-semibold'>Size:</span>
                   <Select
                     id='size-select'
@@ -181,7 +192,7 @@ function GeneralRules() {
                 <a
                   href='https://5e.tools/variantrules.html#carrying%20capacity_xphb'
                   target='_blank'
-                  className='text-xs ml-auto'>
+                  className='ml-auto text-xs'>
                   PHB&apos;24 p.362
                 </a>
               </div>
@@ -212,7 +223,7 @@ function GeneralRules() {
                 </div>
                 <div>
                   Your DC for these saving throws (and any grapple escape attempts) is{" "}
-                  <span className='text-yellow-400 font-bold' data-tooltip-id='grapple-dc-tooltip'>
+                  <span className='font-bold text-yellow-400' data-tooltip-id='grapple-dc-tooltip'>
                     {8 + strMod + Number(profBonus)}
                   </span>
                   <Tooltip
@@ -231,7 +242,7 @@ function GeneralRules() {
                 <a
                   href='https://5e.tools/variantrules.html#unarmed%20strike_xphb'
                   target='_blank'
-                  className='text-xs ml-auto'>
+                  className='ml-auto text-xs'>
                   PHB&apos;24 p.377
                 </a>
               </div>
@@ -259,7 +270,7 @@ function GeneralRules() {
                 <a
                   href='https://5e.tools/trapshazards.html#suffocation_xphb'
                   target='_blank'
-                  className='text-xs ml-auto'>
+                  className='ml-auto text-xs'>
                   PHB&apos;24 p.376
                 </a>
               </div>
@@ -271,7 +282,7 @@ function GeneralRules() {
               onSelect={() => handleTogglePanel(3)}>
               <div className='flex flex-col space-y-2'>
                 <div className='text-sm'>
-                  <span className='font-semibold mb-2'>Long Jump</span>
+                  <span className='mb-2 font-semibold'>Long Jump</span>
                   <br />
                   You cover a number of feet up to your Strength score if you move at least 10 feet
                   on foot immediately before the jump.
@@ -296,13 +307,13 @@ function GeneralRules() {
                   <a
                     href='https://5e.tools/variantrules.html#long%20jump_xphb'
                     target='_blank'
-                    className='text-xs ml-auto'>
+                    className='ml-auto text-xs'>
                     PHB&apos;24 p.370
                   </a>
                 </div>
                 <hr />
                 <div className='text-sm'>
-                  <span className='font-semibold mb-2'>High Jump</span>
+                  <span className='mb-2 font-semibold'>High Jump</span>
                   <br />
                   You leap into the air a number of feet equal to 3 plus your Strength modifier
                   (minimum of 0 feet) if you move at least 10 feet on foot immediately before the
@@ -361,7 +372,7 @@ function GeneralRules() {
                 <a
                   href='https://5e.tools/variantrules.html#high%20jump_xphb'
                   target='_blank'
-                  className='text-xs ml-auto'>
+                  className='ml-auto text-xs'>
                   PHB&apos;24 p.368
                 </a>
               </div>
@@ -388,7 +399,7 @@ function GeneralRules() {
                 <a
                   href='https://5e.tools/variantrules.html#downtime%20activity%3a%20training_xge'
                   target='_blank'
-                  className='text-xs ml-auto'>
+                  className='ml-auto text-xs'>
                   XGE p.134
                 </a>
               </div>

@@ -50,19 +50,19 @@ function ConstructionBasket({
   }
 
   return (
-    <div className='w-full max-w-full mx-auto p-6 bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600'>
-      <h2 className='text-3xl font-semibold mb-4 text-center text-yellow-400'>
+    <div className='w-full max-w-full p-6 mx-auto text-white bg-gray-800 border border-gray-600 rounded-lg shadow-xl'>
+      <h2 className='mb-4 text-3xl font-semibold text-center text-yellow-400'>
         Construction Basket
       </h2>
       <div className='overflow-x-auto'>
         <table className='min-w-full bg-gray-700 rounded-md'>
           <thead>
             <tr className='border-b-4 border-gray-600'>
-              <th className='p-2 text-left text-lg font-semibold'>#</th>
-              <th className='p-2 text-left text-lg font-semibold'>Name</th>
-              <th className='p-2 text-left text-lg font-semibold'>Slots</th>
-              <th className='p-2 text-left text-lg font-semibold'>Cost</th>
-              <th className='p-2 text-left text-lg font-semibold'></th>
+              <th className='p-2 text-lg font-semibold text-left'>#</th>
+              <th className='p-2 text-lg font-semibold text-left'>Name</th>
+              <th className='p-2 text-lg font-semibold text-left'>Slots</th>
+              <th className='p-2 text-lg font-semibold text-left'>Cost</th>
+              <th className='p-2 text-lg font-semibold text-left'></th>
             </tr>
           </thead>
           <tbody>
@@ -77,7 +77,7 @@ function ConstructionBasket({
                   <td className='p-3 text-left'>{cost} gp</td>
                   <td className='p-2'>
                     <button
-                      className='bg-red-600 text-white px-2 py-1 rounded-md font-bold'
+                      className='px-2 py-1 font-bold text-white bg-red-600 rounded-md'
                       onClick={() => onRemove(expansion.id)}>
                       X
                     </button>
@@ -87,7 +87,7 @@ function ConstructionBasket({
             })}
           </tbody>
           <tfoot>
-            <tr className='bg-gray-800 text-yellow-400'>
+            <tr className='text-yellow-400 bg-gray-800'>
               <td className='p-2 font-semibold text-left'>Total</td>
               <td className='p-2 text-left'>{totalExpansions} Expansion(s)</td>
               <td className='p-3 text-left'>{totalSlots}</td>
@@ -99,8 +99,8 @@ function ConstructionBasket({
       </div>
 
       {/* Final Cost Calculation Section */}
-      <div className='mt-6 p-4 bg-gray-700 text-white rounded-lg shadow'>
-        <h3 className='text-xl font-semibold mb-4 text-yellow-400'>Final Cost Calculation</h3>
+      <div className='p-4 mt-6 text-white bg-gray-700 rounded-lg shadow'>
+        <h3 className='mb-4 text-xl font-semibold text-yellow-400'>Final Cost Calculation</h3>
         <ul className='space-y-2'>
           <li>
             <strong>Additional Plots Needed:</strong> {additionalPlotsNeeded} |{" "}

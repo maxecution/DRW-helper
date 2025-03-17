@@ -88,13 +88,13 @@ function LevelUpForm() {
   };
 
   return (
-    <div className='min-h-screen bg-gray-800 flex flex-col items-center p-6'>
+    <div className='flex flex-col items-center min-h-screen p-6 bg-gray-800'>
       <form className='space-y-6'>
         <div className='grid grid-cols-2 gap-4'>
           <div id='current-level-block'>
             <label
               htmlFor='current-level'
-              className='block text-sm font-semibold text-yellow-400 mb-1'>
+              className='block mb-1 text-sm font-semibold text-yellow-400'>
               Current Level
             </label>
             <input
@@ -111,7 +111,7 @@ function LevelUpForm() {
               min='3'
               max='19'
               placeholder='3-19'
-              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
               data-tooltip-id='current-level-tooltip'
             />
             <Tooltip
@@ -125,7 +125,7 @@ function LevelUpForm() {
           <div id='desired-level-block'>
             <label
               htmlFor='desired-level'
-              className='block text-sm font-semibold text-yellow-400 mb-1'>
+              className='block mb-1 text-sm font-semibold text-yellow-400'>
               Desired Level
             </label>
             <input
@@ -142,7 +142,7 @@ function LevelUpForm() {
               min='4'
               max='20'
               placeholder='4-20'
-              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
               data-tooltip-id='desired-level-tooltip'
             />
             <Tooltip
@@ -159,7 +159,7 @@ function LevelUpForm() {
           <div id='available-xp-block'>
             <label
               htmlFor='available-xp'
-              className='block text-sm font-semibold text-yellow-400 mb-1'>
+              className='block mb-1 text-sm font-semibold text-yellow-400'>
               Available XP
             </label>
             <input
@@ -176,7 +176,7 @@ function LevelUpForm() {
               min='0'
               max='999'
               placeholder='0-999'
-              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
               data-tooltip-id='available-xp-tooltip'
             />
             <Tooltip
@@ -190,7 +190,7 @@ function LevelUpForm() {
           <div id='last-leveled-date-block'>
             <label
               htmlFor='last-leveled-date'
-              className='block text-sm font-semibold text-yellow-400 mb-1'>
+              className='block mb-1 text-sm font-semibold text-yellow-400'>
               Last Level Up Date
             </label>
             <input
@@ -204,7 +204,7 @@ function LevelUpForm() {
                   setLastLeveledDate("");
                 }
               }}
-              className='w-40 px-3 py-2 border border-gray-600 bg-gray-700 text-white rounded-md'
+              className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
               data-tooltip-id='last-leveled-date-tooltip'
             />
             <Tooltip
@@ -221,13 +221,13 @@ function LevelUpForm() {
           <button
             type='button'
             onClick={handleSubmit}
-            className='w-full py-2 font-medium text-white bg-gradient-to-r from-green-400 to-green-600 rounded-md shadow-lg'>
+            className='w-full py-2 font-medium text-white shadow-lg bg-gradient-to-r from-green-400 to-green-600 rounded-md'>
             Calculate
           </button>
           <button
             type='button'
             onClick={handleClear}
-            className='w-full py-2 font-medium text-white bg-gradient-to-r from-gray-400 to-gray-600 rounded-md shadow-lg'>
+            className='w-full py-2 font-medium text-white shadow-lg bg-gradient-to-r from-gray-400 to-gray-600 rounded-md'>
             Clear
           </button>
         </div>
@@ -235,7 +235,7 @@ function LevelUpForm() {
 
       {resultMessage && (
         <div
-          className='mt-6 p-4 bg-green-100 border border-green-300 rounded-md text-sm text-gray-700'
+          className='p-4 mt-6 text-sm text-gray-700 bg-green-100 border border-green-300 rounded-md'
           dangerouslySetInnerHTML={{ __html: resultMessage }}
         />
       )}

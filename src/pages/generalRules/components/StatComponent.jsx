@@ -8,7 +8,7 @@ const Stat = ({ ability, score, setScore }) => {
   const mod = Math.floor((score - 10) / 2);
 
   return (
-    <div className='flex flex-col items-center px-4 pt-2 pb-2 mb-3 border rounded-lg border-gray-600 shadow-md w-24 bg-gray-800 text-white'>
+    <div className='flex flex-col items-center w-24 px-4 pt-2 pb-2 mb-3 text-white bg-gray-800 border border-gray-600 rounded-lg shadow-md'>
       <h3 className='text-sm font-bold'>{ability}</h3>
       <div className='flex items-center mt-2'>
         <ArrowButton
@@ -36,7 +36,7 @@ const Stat = ({ ability, score, setScore }) => {
           onClick={() => handleIncrementDecrement(-1, min, max, setScore)}
         />
       </div>
-      <p className='mt-2 text-xl font-semibold border rounded-xl px-2'>
+      <p className='px-2 mt-2 text-xl font-semibold border rounded-xl'>
         {mod >= 0 ? `+${mod}` : mod}
       </p>
     </div>

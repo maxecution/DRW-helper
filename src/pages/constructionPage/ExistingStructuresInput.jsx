@@ -4,7 +4,7 @@ import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputU
 function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
   return (
     <div className='flex flex-row items-center justify-between gap-4'>
-      <label htmlFor='existing-structure-amount' className='text-md font-medium text-yellow-400'>
+      <label htmlFor='existing-structure-amount' className='font-medium text-yellow-400 text-md'>
         Number of existing structures:
       </label>
       <div className='flex items-center'>

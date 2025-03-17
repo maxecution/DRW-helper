@@ -3,15 +3,15 @@ import logoDiscord from "../../assets/discord-logo-blue.png";
 
 function HelloWorld() {
   return (
-    <div className='min-h-screen bg-gray-800 text-white flex flex-col'>
+    <div className='flex flex-col min-h-screen text-white bg-gray-800'>
       {/* Hero Section */}
-      <header className='relative bg-gray-900 py-20 text-center shadow-lg'>
-        <div className='absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-800 to-transparent opacity-75'></div>
+      <header className='relative py-20 text-center bg-gray-900 shadow-lg'>
+        <div className='absolute inset-0 opacity-75 bg-gradient-to-t from-gray-900 via-gray-800 to-transparent'></div>
         <div className='relative space-y-6'>
-          <h1 className='text-4xl md:text-5xl font-extrabold text-yellow-400'>
+          <h1 className='text-4xl font-extrabold text-yellow-400 md:text-5xl'>
             Welcome to the Dark Road West - Helper Tool
           </h1>
-          <p className='text-lg md:text-2xl text-gray-300 max-w-4xl mx-auto'>
+          <p className='max-w-4xl mx-auto text-lg text-gray-300 md:text-2xl'>
             Join a world of adventure, danger, and magic. Forge bonds with a community of daring
             adventurers and heroes.
           </p>
@@ -19,7 +19,7 @@ function HelloWorld() {
       </header>
 
       {/* Links Section */}
-      <main className='flex-grow flex flex-col items-center px-6 py-12 space-y-12'>
+      <main className='flex flex-col items-center flex-grow px-6 py-12 space-y-12'>
         {/* Buttons */}
         <div className='flex flex-col md:flex-row gap-8'>
           {/* Discord Button */}
@@ -27,13 +27,13 @@ function HelloWorld() {
             href='https://discord.gg/darkroadwest'
             target='_blank'
             rel='noopener noreferrer'
-            className='group bg-gray-700 hover:bg-gray-600 rounded-lg shadow-lg px-6 py-8 items-center text-center transition duration-300 ease-in-out'>
+            className='items-center px-6 py-8 text-center bg-gray-700 rounded-lg shadow-lg group hover:bg-gray-600 transition duration-300 ease-in-out'>
             <img
               src={logoDiscord}
               alt='Join our Discord'
-              className='h-16 w-auto mx-auto transition-transform group-hover:scale-110'
+              className='w-auto h-16 mx-auto transition-transform group-hover:scale-110'
             />
-            <p className='mt-4 text-lg text-yellow-400 font-semibold'>Join the Discord</p>
+            <p className='mt-4 text-lg font-semibold text-yellow-400'>Join the Discord</p>
           </a>
 
           {/* 5e.Tools Button */}
@@ -41,18 +41,18 @@ function HelloWorld() {
             href='https://5e.tools/'
             target='_blank'
             rel='noopener noreferrer'
-            className='group bg-gray-700 hover:bg-gray-600 rounded-lg shadow-lg px-6 py-8 items-center text-center transition duration-300 ease-in-out'>
+            className='items-center px-6 py-8 text-center bg-gray-700 rounded-lg shadow-lg group hover:bg-gray-600 transition duration-300 ease-in-out'>
             <img
               src={logo5e}
               alt='5e.Tools'
-              className='h-16 w-auto mx-auto transition-transform group-hover:scale-110'
+              className='w-auto h-16 mx-auto transition-transform group-hover:scale-110'
             />
-            <p className='mt-4 text-lg text-yellow-400 font-semibold'>Explore 5e.Tools</p>
+            <p className='mt-4 text-lg font-semibold text-yellow-400'>Explore 5e.Tools</p>
           </a>
         </div>
 
         {/* Thematic Quote */}
-        <blockquote className='border-l-4 border-yellow-400 pl-4 text-gray-300 italic max-w-lg'>
+        <blockquote className='max-w-lg pl-4 italic text-gray-300 border-l-4 border-yellow-400'>
           The road ahead is dark, but together, we walk the path.
         </blockquote>
       </main>

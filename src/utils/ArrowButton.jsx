@@ -28,7 +28,7 @@ const ArrowButton = ({ elementId, direction, onClick, isDisabled = false }) => {
   return (
     <button
       type='button'
-      className='px-1 h-full text-gray-500 hover:text-sky-500'
+      className='h-full px-1 text-gray-500 hover:text-sky-500'
       onClick={handleClick}
       disabled={isDisabled}
       aria-label={direction === "up" ? "Increase quantity" : "Decrease quantity"}>

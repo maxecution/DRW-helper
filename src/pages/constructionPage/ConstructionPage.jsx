@@ -55,23 +55,23 @@ function ConstructionPage() {
   };
 
   return (
-    <div className='flex flex-col min-h-min bg-gray-900 text-white w-full max-w-full'>
+    <div className='flex flex-col w-full max-w-full text-white bg-gray-900 min-h-min'>
       {/* Main Header */}
-      <header className='text-center py-6 bg-gray-800 shadow-lg'>
+      <header className='py-6 text-center bg-gray-800 shadow-lg'>
         <h1 className='text-2xl font-bold text-yellow-400 sm:text-3xl md:text-4xl'>
           Housing and Construction Calculator
         </h1>
       </header>
 
       {/* Content Section */}
-      <div className='flex flex-col md:flex-row gap-8 p-4 sm:p-6 md:p-8'>
+      <div className='flex flex-col p-4 md:flex-row gap-8 sm:p-6 md:p-8'>
         {/* Left Section (1/3 Width) */}
         <div className='w-full md:w-1/3 space-y-6'>
           {/* Expansion Selector */}
-          <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+          <div className='flex flex-col items-center justify-between sm:flex-row gap-4'>
             <label
               htmlFor='expansion-select'
-              className='text-md font-medium text-yellow-400 text-left w-full sm:w-2/3'>
+              className='w-full font-medium text-left text-yellow-400 text-md sm:w-2/3'>
               Select an expansion:
             </label>
             <Select
@@ -106,7 +106,7 @@ function ConstructionPage() {
           {/* Clear Button */}
           <div className='items-center text-center'>
             <button
-              className='font-bold border border-gray-600 bg-gray-700 hover:bg-gray-600 text-white py-2 px-6 rounded-md'
+              className='px-6 py-2 font-bold text-white bg-gray-700 border border-gray-600 hover:bg-gray-600 rounded-md'
               onClick={handleClear}>
               Clear
             </button>
@@ -114,7 +114,7 @@ function ConstructionPage() {
         </div>
 
         {/* Right Section (2/3 Width) */}
-        <div className='w-full md:w-2/3 text-center'>
+        <div className='w-full text-center md:w-2/3'>
           <ExpansionDetails
             expansion={expansion}
             expansions={addedExpansions}
@@ -124,7 +124,7 @@ function ConstructionPage() {
       </div>
 
       {/* Construction Basket Section */}
-      <div className='w-full bg-gray-800 p-6 text-center'>
+      <div className='w-full p-6 text-center bg-gray-800'>
         <ConstructionBasket
           expansions={addedExpansions}
           onRemove={handleRemoveExpansion}

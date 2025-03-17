@@ -17,7 +17,7 @@ function ExistingStructuresInput({ value, setValue, min = 0, max }) {
       <div className='flex'>
         <label
           htmlFor='unused-slots-amount'
-          className='text-md font-medium text-yellow-400 inline-flex items-center'>
+          className='inline-flex items-center font-medium text-yellow-400 text-md'>
           Number of un-used slots:{" "}
         </label>
         <InfoIcon data-tooltip-id='unused-slots-info-icon' className='ml-2' />

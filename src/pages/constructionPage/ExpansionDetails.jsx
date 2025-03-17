@@ -22,16 +22,16 @@ function ExpansionDetails({ expansion, expansions, onAddExpansion }) {
   const { cost, slots } = tierInfo[expansion.tier] || { cost: 0, slots: 1 };
 
   return (
-    <div className='max-w mx-auto p-6 bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600'>
-      <h2 className='text-3xl font-semibold mb-4 text-center text-yellow-400'>{expansion.name}</h2>
-      <div className='bg-gray-700 p-4 rounded-md mb-4'>
+    <div className='p-6 mx-auto text-white bg-gray-800 border border-gray-600 rounded-lg shadow-xl max-w'>
+      <h2 className='mb-4 text-3xl font-semibold text-center text-yellow-400'>{expansion.name}</h2>
+      <div className='p-4 mb-4 bg-gray-700 rounded-md'>
         <p className='text-lg'>
           <strong>Tier:</strong> {expansion.tier} | <strong>Cost:</strong> {cost} gp |{" "}
           <strong>Expansion Slots:</strong> {slots}
         </p>
       </div>
 
-      <p className='text-lg text-left font-semibold text-yellow-300 mb-2'>Description:</p>
+      <p className='mb-2 text-lg font-semibold text-left text-yellow-300'>Description:</p>
       <ul className='pl-5'>
         {expansion.description.map((item, index) => (
           <li

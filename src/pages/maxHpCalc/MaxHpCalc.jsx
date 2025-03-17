@@ -94,11 +94,11 @@ function MaxHpCalc() {
   }, [classes, constitutionMod, toughFeat, dwarfSpecies, draconicSorc]);
 
   return (
-    <div className='min-h-screen bg-gray-800 text-white flex flex-col items-center p-6'>
-      <h1 className='text-3xl font-bold text-yellow-400 mb-6'>Max HP Calculator</h1>
+    <div className='flex flex-col items-center min-h-screen p-6 text-white bg-gray-800'>
+      <h1 className='mb-6 text-3xl font-bold text-yellow-400'>Max HP Calculator</h1>
 
       <div className='w-80'>
-        <div className='mb-6 flex text-nowrap items-center gap-2 mx-5'>
+        <div className='flex items-center mx-5 mb-6 text-nowrap gap-2'>
           <label htmlFor='constitutionMod' className='block text-gray-300'>
             Constitution Modifier:
           </label>
@@ -107,10 +107,10 @@ function MaxHpCalc() {
             type='number'
             value={constitutionMod}
             onChange={(e) => setConstitutionMod(parseInt(e.target.value) || 0)}
-            className='bg-gray-700 text-white p-2 rounded w-full'
+            className='w-full p-2 text-white bg-gray-700 rounded'
           />
         </div>
-        <div className='mb-6 flex text-nowrap items-center justify-center gap-5'>
+        <div className='flex items-center justify-center mb-6 text-nowrap gap-5'>
           <div className='flex items-center gap-2'>
             <label htmlFor='toughFeat' className='block text-gray-300'>
               Tough:
@@ -180,16 +180,16 @@ function MaxHpCalc() {
         </div>
 
         {classes.map((entry, index) => (
-          <div key={index} className='mb-6 p-4 border border-gray-600 rounded'>
+          <div key={index} className='p-4 mb-6 border border-gray-600 rounded'>
             <div className='mb-4'>
-              <label htmlFor={`class-${index}`} className='block text-gray-300 mb-1'>
+              <label htmlFor={`class-${index}`} className='block mb-1 text-gray-300'>
                 Class:
               </label>
               <select
                 id={`class-${index}`}
                 value={entry.class}
                 onChange={(e) => updateClass(index, "class", e.target.value)}
-                className='bg-gray-700 text-white p-2 rounded w-full'>
+                className='w-full p-2 text-white bg-gray-700 rounded'>
                 {Object.keys(classHitDice).map((className) => (
                   <option key={className} value={className}>
                     {className}
@@ -199,7 +199,7 @@ function MaxHpCalc() {
             </div>
 
             <div className='mb-4'>
-              <label htmlFor={`level-${index}`} className='block text-gray-300 mb-1'>
+              <label htmlFor={`level-${index}`} className='block mb-1 text-gray-300'>
                 Level:
               </label>
               <input
@@ -208,7 +208,7 @@ function MaxHpCalc() {
                 value={entry.level}
                 min='1'
                 onChange={(e) => updateClass(index, "level", parseInt(e.target.value) || 1)}
-                className='bg-gray-700 text-white p-2 rounded w-full'
+                className='w-full p-2 text-white bg-gray-700 rounded'
               />
             </div>
 
@@ -249,7 +249,7 @@ function MaxHpCalc() {
             {index > 0 && (
               <button
                 onClick={() => removeClass(index)}
-                className='mt-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full'>
+                className='w-full px-4 py-2 mt-2 text-white bg-red-600 rounded hover:bg-red-700'>
                 Remove Class
               </button>
             )}
@@ -258,17 +258,17 @@ function MaxHpCalc() {
 
         <button
           onClick={addClass}
-          className='bg-gray-600 hover:bg-gray-700 text-yellow-400 hover:text-yellow-500 px-4 py-2 rounded w-full mb-4'>
+          className='w-full px-4 py-2 mb-4 text-yellow-400 bg-gray-600 rounded hover:bg-gray-700 hover:text-yellow-500'>
           Add Another Class
         </button>
 
         <button
           onClick={calculateHp}
-          className='bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-bold px-4 py-2 rounded w-full mb-6'>
+          className='w-full px-4 py-2 mb-6 font-bold text-gray-800 bg-yellow-400 rounded hover:bg-yellow-500'>
           Calculate Max HP
         </button>
 
-        <div className='text-xl font-bold text-yellow-400 text-center'>Maximum HP: {maxHp}</div>
+        <div className='text-xl font-bold text-center text-yellow-400'>Maximum HP: {maxHp}</div>
       </div>
     </div>
   );

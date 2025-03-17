@@ -1,10 +1,10 @@
 function Footer() {
   return (
-    <footer className='h-10 text-center text-gray-600 text-sm flex items-center justify-center border border-y-gray-600'>
-      <p className='text-xs inline-flex'>
+    <footer className='flex items-center justify-center w-full h-10 text-sm text-center text-gray-600 bg-white border border-y-gray-600'>
+      <p className='inline-flex text-xs'>
         &copy; 2024
         <a
-          className='hover:underline flex items-center ml-1'
+          className='flex items-center ml-1 hover:underline'
           rel='noopener noreferrer'
           target='_blank'
           href='https://github.com/maxecution/'>

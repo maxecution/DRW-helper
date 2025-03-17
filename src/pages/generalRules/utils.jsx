@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip";
 const CapacityTooltip = ({ label, value, multiplier, tooltipId }) => (
   <div>
     <span>{label}: </span>
-    <span className='text-yellow-400 font-bold' data-tooltip-id={tooltipId}>
+    <span className='font-bold text-yellow-400' data-tooltip-id={tooltipId}>
       {value} lb.
     </span>
     <Tooltip
@@ -25,11 +25,11 @@ export const CapacityDisplay = ({ strScore, carryingMultiplier }) => {
       <div className='space-y-1'>
         <div>
           <span>Carry Capacity: </span>
-          <span className='text-yellow-400 font-bold'>-</span>
+          <span className='font-bold text-yellow-400'>-</span>
         </div>
         <div>
           <span>Drag/Lift/Push Capacity: </span>
-          <span className='text-yellow-400 font-bold'>-</span>
+          <span className='font-bold text-yellow-400'>-</span>
         </div>
       </div>
     );
@@ -59,7 +59,7 @@ export const BreathTooltip = ({ conMod }) => {
 
   return (
     <span>
-      <span className='text-yellow-400 font-bold' data-tooltip-id='suffocating-tooltip'>
+      <span className='font-bold text-yellow-400' data-tooltip-id='suffocating-tooltip'>
         {holdTime}
       </span>
       <Tooltip
@@ -79,7 +79,7 @@ export const RunningLongJump = ({ strScore }) => {
   const jumpDistance = strScore;
   return (
     <>
-      <span className='text-yellow-400 font-bold' data-tooltip-id='running-jump-tooltip'>
+      <span className='font-bold text-yellow-400' data-tooltip-id='running-jump-tooltip'>
         {jumpDistance} ft.
       </span>
       <Tooltip
@@ -99,7 +99,7 @@ export const StandingLongJump = ({ strScore }) => {
   const jumpDistance = Math.floor(strScore / 2);
   return (
     <>
-      <span className='text-yellow-400 font-bold' data-tooltip-id='standing-jump-tooltip'>
+      <span className='font-bold text-yellow-400' data-tooltip-id='standing-jump-tooltip'>
         {jumpDistance} ft.
       </span>
       <Tooltip
@@ -121,7 +121,7 @@ export const RunningHighJump = ({ strMod, height = 0 }) => {
   const totalHeight = jumpHeight + additionalReach;
   return (
     <>
-      <span className='text-yellow-400 font-bold' data-tooltip-id='running-high-jump-tooltip'>
+      <span className='font-bold text-yellow-400' data-tooltip-id='running-high-jump-tooltip'>
         {totalHeight} ft.
       </span>
       <Tooltip
@@ -143,7 +143,7 @@ export const StandingHighJump = ({ strMod, height = 0 }) => {
   const totalHeight = jumpHeight + additionalReach;
   return (
     <>
-      <span className='text-yellow-400 font-bold' data-tooltip-id='standing-high-jump-tooltip'>
+      <span className='font-bold text-yellow-400' data-tooltip-id='standing-high-jump-tooltip'>
         {totalHeight} ft.
       </span>
       <Tooltip
@@ -193,7 +193,7 @@ export const TrainingDuration = ({ intMod }) => {
       </div>
       <div>
         Weeks needed:{" "}
-        <span className='text-yellow-400 font-bold' data-tooltip-id='training-weeks-tooltip'>
+        <span className='font-bold text-yellow-400' data-tooltip-id='training-weeks-tooltip'>
           {weeksNeeded}
         </span>
         <span className='text-xs'> ({downtimeDays} DT days)</span>
@@ -209,7 +209,7 @@ export const TrainingDuration = ({ intMod }) => {
       </div>
       <div>
         Total cost:{" "}
-        <span className='text-yellow-400 font-bold' data-tooltip-id='training-cost-tooltip'>
+        <span className='font-bold text-yellow-400' data-tooltip-id='training-cost-tooltip'>
           {weeksNeeded * 25}gp
         </span>
         <Tooltip
