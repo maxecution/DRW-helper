@@ -6,9 +6,18 @@ import { Tooltip } from "react-tooltip";
 import { selectStyle } from "../../utils/Styles";
 import Stat from "./components/StatComponent";
 import Level from "./components/LevelComponent";
-import { CapacityDisplay, BreathTooltip } from "./utils.jsx";
+import {
+  CapacityDisplay,
+  BreathTooltip,
+  RunningLongJump,
+  RunningHighJump,
+  StandingLongJump,
+  StandingHighJump,
+  TrainingDuration,
+} from "./utils.jsx";
+import { handleNumberChange } from "../../utils/InputUtils.js";
 function GeneralRules() {
-  // Load from localStorage or default to 10
+  // Load from localStorage or use default values
   const getInitialValue = (key, defaultValue) => {
     const storedValue = localStorage.getItem(key);
     return storedValue !== null ? JSON.parse(storedValue) : defaultValue;
@@ -21,13 +30,15 @@ function GeneralRules() {
   const [intScore, setIntScore] = useState(() => getInitialValue("intScore", 10));
   const [wisScore, setWisScore] = useState(() => getInitialValue("wisScore", 10));
   const [chaScore, setChaScore] = useState(() => getInitialValue("chaScore", 10));
+  const [heightFeet, setHeightFeet] = useState(() => getInitialValue("heightFeet", 0));
+  const [heightInches, setHeightInches] = useState(() => getInitialValue("heightInches", 0));
 
   const strMod = Math.floor((strScore - 10) / 2);
-  const dexMod = Math.floor((dexScore - 10) / 2);
+  // const dexMod = Math.floor((dexScore - 10) / 2);
   const conMod = Math.floor((conScore - 10) / 2);
   const intMod = Math.floor((intScore - 10) / 2);
-  const wisMod = Math.floor((wisScore - 10) / 2);
-  const chaMod = Math.floor((chaScore - 10) / 2);
+  // const wisMod = Math.floor((wisScore - 10) / 2);
+  // const chaMod = Math.floor((chaScore - 10) / 2);
   const profBonus = Math.ceil(level / 4) + 1;
 
   const sizeOptions = [
@@ -41,8 +52,6 @@ function GeneralRules() {
 
   const [carryingMultiplier, setCarryingMultiplier] = useState(0);
 
-  const [activePanels, setActivePanels] = useState([false, false, false]);
-
   // Save scores to localStorage when they change
   useEffect(() => {
     localStorage.setItem("level", JSON.stringify(level));
@@ -52,14 +61,19 @@ function GeneralRules() {
     localStorage.setItem("intScore", JSON.stringify(intScore));
     localStorage.setItem("wisScore", JSON.stringify(wisScore));
     localStorage.setItem("chaScore", JSON.stringify(chaScore));
-  }, [level, strScore, dexScore, conScore, intScore, wisScore, chaScore]);
+    localStorage.setItem("heightFeet", JSON.stringify(heightFeet));
+    localStorage.setItem("heightInches", JSON.stringify(heightInches));
+  }, [level, strScore, dexScore, conScore, intScore, wisScore, chaScore, heightFeet, heightInches]);
+
+  const panelCount = 5; // Change this to match Accordion.Panel count
+  const [activePanels, setActivePanels] = useState(Array(panelCount).fill(false));
 
   const handleExpandAll = () => {
-    setActivePanels([true, true, true]);
+    setActivePanels(Array(panelCount).fill(true));
   };
 
   const handleCollapseAll = () => {
-    setActivePanels([false, false, false]);
+    setActivePanels(Array(panelCount).fill(false));
   };
 
   const handleTogglePanel = (index) => {
@@ -131,7 +145,7 @@ function GeneralRules() {
               </Tooltip>
             </div>
           </div>
-          <Accordion bordered className='text-white mx-4 w-full'>
+          <Accordion bordered className='text-white mx-4 w-full mb-4 overflow-visible'>
             <Accordion.Panel
               header='Carrying Capacity'
               expanded={activePanels[0]}
@@ -156,38 +170,47 @@ function GeneralRules() {
                     }}
                   />
                 </div>
-                <p className='text-sm'>
+                <div className='text-sm'>
                   Your size and Strength score determine the maximum weight in pounds that you can
                   carry. While dragging, lifting, or pushing weight in excess of the maximum weight
                   you can carry, your Speed can be no more than 5 feet.
-                </p>
+                </div>
                 <CapacityDisplay strScore={strScore} carryingMultiplier={carryingMultiplier} />
+              </div>
+              <div className='flex'>
+                <a
+                  href='https://5e.tools/variantrules.html#carrying%20capacity_xphb'
+                  target='_blank'
+                  className='text-xs ml-auto'>
+                  PHB&apos;24 p.362
+                </a>
               </div>
             </Accordion.Panel>
             <Accordion.Panel
               header='Grapple/Shove'
+              className='overflow-visible'
               expanded={activePanels[1]}
               onSelect={() => handleTogglePanel(1)}>
               <div className='flex flex-col space-y-3'>
-                <p className='text-sm'>
+                <div className='text-sm'>
                   <span className='font-medium'>Unarmed Strike</span> - A melee attack that involves
                   you using your body to damage,{" "}
                   <span className='font-semibold'>grapple, or shove</span> a target within 5 feet of
                   you.
-                </p>
-                <p className='text-sm'>
+                </div>
+                <div className='text-sm'>
                   <span className='font-medium'>Grapple</span> - The target must succeed on a
                   Strength or Dexterity saving throw (it chooses which), or it has the Grappled
                   condition. This grapple is possible only if the target is no more than one size
                   larger than you and if you have a hand free to grab it.
-                </p>
-                <p className='text-sm'>
+                </div>
+                <div className='text-sm'>
                   <span className='font-medium'>Shove</span> - The target must succeed on a Strength
                   or Dexterity saving throw (it chooses which), or you either push it 5 feet away or
                   cause it to have the Prone condition. This shove is possible only if the target is
                   no more than one size larger than you.
-                </p>
-                <p>
+                </div>
+                <div>
                   Your DC for these saving throws (and any grapple escape attempts) is{" "}
                   <span className='text-yellow-400 font-bold' data-tooltip-id='grapple-dc-tooltip'>
                     {8 + strMod + Number(profBonus)}
@@ -202,26 +225,172 @@ function GeneralRules() {
                     8 (base) + Strength Mod ({strMod}) + Proficiency Bonus ({profBonus})
                   </Tooltip>
                   .
-                </p>
+                </div>
+              </div>
+              <div className='flex'>
+                <a
+                  href='https://5e.tools/variantrules.html#unarmed%20strike_xphb'
+                  target='_blank'
+                  className='text-xs ml-auto'>
+                  PHB&apos;24 p.377
+                </a>
               </div>
             </Accordion.Panel>
             <Accordion.Panel
               header='Suffocating'
+              className='overflow-visible'
               expanded={activePanels[2]}
               onSelect={() => handleTogglePanel(2)}>
               <div className='flex flex-col space-y-3'>
-                <p className='text-sm'>
+                <div className='text-sm'>
                   A creature can hold its breath for a number of minutes equal to 1 plus its
                   Constitution modifier (minimum of 30 seconds) before suffocation begins.
-                </p>
-                <p className='text-sm'>
+                </div>
+                <div className='text-sm'>
                   When a creature runs out of breath or is choking, it gains 1 Exhaustion level at
                   the end of each of its turns. When a creature can breathe again, it removes all
                   levels of Exhaustion it gained from suffocating.
-                </p>
-                <p>
+                </div>
+                <div>
                   You can hold your breath for <BreathTooltip conMod={conMod} /> before suffocating.
-                </p>
+                </div>
+              </div>
+              <div className='flex'>
+                <a
+                  href='https://5e.tools/trapshazards.html#suffocation_xphb'
+                  target='_blank'
+                  className='text-xs ml-auto'>
+                  PHB&apos;24 p.376
+                </a>
+              </div>
+            </Accordion.Panel>
+            <Accordion.Panel
+              header='Jumping'
+              className='overflow-visible'
+              expanded={activePanels[3]}
+              onSelect={() => handleTogglePanel(3)}>
+              <div className='flex flex-col space-y-2'>
+                <div className='text-sm'>
+                  <span className='font-semibold mb-2'>Long Jump</span>
+                  <br />
+                  You cover a number of feet up to your Strength score if you move at least 10 feet
+                  on foot immediately before the jump.
+                </div>
+                <div className='text-sm'>
+                  When you make a standing Long Jump, you can leap only half that distance. Either
+                  way, each foot you jump costs a foot of movement.
+                </div>
+                <div className='text-sm'>
+                  If you land in difficult terrain, you must succeed on a DC 10 Dexterity
+                  (Acrobatics) check or have the Prone condition. This Long Jump rule assumes that
+                  the height of the jump doesn&apos;t matter, such as a jump across a stream or
+                  chasm. At your DM&apost;s option, you must succeed on a DC 10 Strength (Athletics)
+                  check to clear a low obstacle (no taller than a quarter of the jump&apost;s
+                  distance), such as a hedge or low wall. Otherwise, you hit the obstacle.
+                </div>
+                <div>
+                  Running: <RunningLongJump strScore={strScore} /> | Standing:{" "}
+                  <StandingLongJump strScore={strScore} />
+                </div>
+                <div className='flex'>
+                  <a
+                    href='https://5e.tools/variantrules.html#long%20jump_xphb'
+                    target='_blank'
+                    className='text-xs ml-auto'>
+                    PHB&apos;24 p.370
+                  </a>
+                </div>
+                <hr />
+                <div className='text-sm'>
+                  <span className='font-semibold mb-2'>High Jump</span>
+                  <br />
+                  You leap into the air a number of feet equal to 3 plus your Strength modifier
+                  (minimum of 0 feet) if you move at least 10 feet on foot immediately before the
+                  jump.
+                </div>
+                <div className='text-sm'>
+                  When you make a standing High Jump, you can jump only half that distance. Either
+                  way, each foot of the jump costs a foot of movement.
+                </div>
+                <div className='text-sm'>
+                  You can extend your arms half your height above yourself during the jump. Thus,
+                  you can reach a distance equal to the height of the jump plus 1½ times your
+                  height.
+                </div>
+                {/* Height Input Fields */}
+                <div className='flex items-center gap-2 mt-2'>
+                  <label className='text-sm font-medium'>Height:</label>
+                  <input
+                    type='number'
+                    value={heightFeet}
+                    onChange={(e) => handleNumberChange(e.target.value, 0, 99, setHeightFeet)}
+                    onBlur={(e) => {
+                      if (e.target.value === "") {
+                        setHeightFeet(0);
+                      }
+                    }}
+                    min={0}
+                    className='border border-gray-600 bg-gray-700 text-white text-sm text-center p-1 rounded-md w-8 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                    placeholder='ft'
+                  />
+                  <span className='text-sm'>ft</span>
+                  <input
+                    type='number'
+                    value={heightInches}
+                    onChange={(e) => handleNumberChange(e.target.value, 0, 11, setHeightInches)}
+                    onBlur={(e) => {
+                      if (e.target.value === "") {
+                        setHeightInches(0);
+                      }
+                    }}
+                    min={0}
+                    max={11}
+                    className='border border-gray-600 bg-gray-700 text-white text-sm text-center p-1 rounded-md w-8 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+                    placeholder='in'
+                  />
+                  <span className='text-sm'>in</span>
+                </div>
+                <div>
+                  Running:{" "}
+                  <RunningHighJump strMod={strMod} height={heightFeet * 12 + heightInches} /> |
+                  Standing:{" "}
+                  <StandingHighJump strMod={strMod} height={heightFeet * 12 + heightInches} />
+                </div>
+              </div>
+              <div className='flex'>
+                <a
+                  href='https://5e.tools/variantrules.html#high%20jump_xphb'
+                  target='_blank'
+                  className='text-xs ml-auto'>
+                  PHB&apos;24 p.368
+                </a>
+              </div>
+            </Accordion.Panel>
+            <Accordion.Panel
+              header='Downtime Training'
+              className='overflow-visible'
+              expanded={activePanels[4]}
+              onSelect={() => handleTogglePanel(4)}>
+              <div className='flex flex-col space-y-2'>
+                <div className='text-sm'>
+                  You can spend your downtime learning proficiency with a new tool or learning a
+                  language. 1 workweek is 5 downtime days.
+                </div>
+                <div className='text-sm'>
+                  Receiving training in a language or tool typically takes at least ten workweeks,
+                  but this time is reduced by a number of workweeks equal to the character&apos;s
+                  Intelligence modifier (an Intelligence penalty doesn&apos;t increase the time
+                  needed). Training costs 25 gp per workweek.
+                </div>
+                <TrainingDuration intMod={intMod} />
+              </div>
+              <div className='flex'>
+                <a
+                  href='https://5e.tools/variantrules.html#downtime%20activity%3a%20training_xge'
+                  target='_blank'
+                  className='text-xs ml-auto'>
+                  XGE p.134
+                </a>
               </div>
             </Accordion.Panel>
           </Accordion>
