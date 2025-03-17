@@ -1,11 +1,10 @@
 import React from "react";
 import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputUtils.js";
 import { TbInfoHexagon } from "react-icons/tb";
-import Tooltip from "@mui/material/Tooltip";
+import { Tooltip } from "react-tooltip";
 import ArrowButton from "../../utils/ArrowButton.jsx";
 
 function ExistingStructuresInput({ value, setValue, min = 0, max }) {
-  const infoText = "The number of un-used slots cannot exceed the number of existing structures.";
   const InfoIcon = React.forwardRef((props, ref) => (
     <span ref={ref} {...props}>
       <TbInfoHexagon />
@@ -15,14 +14,22 @@ function ExistingStructuresInput({ value, setValue, min = 0, max }) {
 
   return (
     <div className='flex flex-row items-center justify-between gap-4'>
-      <label
-        htmlFor='existing-structure-amount'
-        className='text-md font-medium text-yellow-400 inline-flex items-center'>
-        Number of un-used slots:
-        <Tooltip title={infoText} placement='top-end' arrow>
-          <InfoIcon className='ml-2' />
+      <div className='flex'>
+        <label
+          htmlFor='unused-slots-amount'
+          className='text-md font-medium text-yellow-400 inline-flex items-center'>
+          Number of un-used slots:{" "}
+        </label>
+        <InfoIcon data-tooltip-id='unused-slots-info-icon' className='ml-2' />
+        <Tooltip
+          id='unused-slots-info-icon'
+          place='top-start'
+          variant='info'
+          className='z-50'
+          opacity={1}>
+          The number of un-used slots cannot exceed the number of existing structures.
         </Tooltip>
-      </label>
+      </div>
       <div className='flex items-center'>
         <ArrowButton
           elementId='unused-slots-amount'

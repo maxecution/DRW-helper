@@ -68,6 +68,14 @@ function Navbar() {
             </li>
             <li>
               <Link
+                to='/general-rules'
+                className='block hover:text-yellow-400 transition'
+                onClick={() => setIsMenuOpen(false)}>
+                General Rules
+              </Link>
+            </li>
+            <li>
+              <Link
                 to='/max-hp-calc'
                 className='block hover:text-yellow-400 transition'
                 onClick={() => setIsMenuOpen(false)}>
