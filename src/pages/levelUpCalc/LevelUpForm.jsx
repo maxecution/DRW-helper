@@ -124,6 +124,7 @@ function LevelUpForm() {
                 id='current-level-tooltip'
                 place='top-end'
                 variant='error'
+                style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                 isOpen={errors.currentLevel}>
                 {errors.currentLevel}
               </Tooltip>
@@ -155,6 +156,7 @@ function LevelUpForm() {
                 id='desired-level-tooltip'
                 place='top-start'
                 variant='error'
+                style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                 isOpen={errors.desiredLevel}>
                 {errors.desiredLevel}
               </Tooltip>
@@ -189,6 +191,7 @@ function LevelUpForm() {
                 id='available-xp-tooltip'
                 place='top-end'
                 variant='error'
+                style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                 isOpen={errors.availableXp}>
                 {errors.availableXp}
               </Tooltip>
@@ -217,6 +220,7 @@ function LevelUpForm() {
                 id='last-leveled-date-tooltip'
                 place='top-start'
                 variant='error'
+                style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                 isOpen={errors.lastLeveledDate}>
                 {errors.lastLeveledDate}
               </Tooltip>

@@ -1,12 +1,24 @@
+import { Tooltip } from "react-tooltip";
 import ArrowButton from "../../utils/ArrowButton.jsx";
 import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputUtils.js";
 
 function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
   return (
     <div className='flex flex-row items-center justify-between gap-4'>
-      <label htmlFor='existing-structure-amount' className='font-medium text-yellow-400 text-md'>
+      <label
+        id='existing-structure-amount-label'
+        data-tooltip-id='existing-structure-amount-tooltip'
+        className='font-medium text-yellow-400 text-md'>
         Number of existing structures:
       </label>
+      <Tooltip
+        id='existing-structure-amount-tooltip'
+        place='top-start'
+        variant='info'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
+        opacity={1}>
+        The sum of existing structures based on all built expansions.
+      </Tooltip>
       <div className='flex items-center'>
         <ArrowButton
           elementId='existing-structure-amount'
@@ -15,6 +27,7 @@ function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
         />
         <input
           id='existing-structure-amount'
+          aria-labelledby='existing-structure-amount-label'
           type='number'
           value={value}
           min={min}

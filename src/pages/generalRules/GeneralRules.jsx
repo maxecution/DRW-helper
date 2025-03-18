@@ -140,7 +140,7 @@ function GeneralRules() {
                   place='top-start'
                   noArrow
                   variant='dark'
-                  className='z-50'
+                  style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                   opacity={0.6}>
                   Expand all
                 </Tooltip>
@@ -156,7 +156,7 @@ function GeneralRules() {
                   place='top-start'
                   noArrow
                   variant='dark'
-                  className='z-50'
+                  style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                   opacity={0.6}>
                   Collapse all
                 </Tooltip>
@@ -241,7 +241,7 @@ function GeneralRules() {
                       place='top-start'
                       offset={3}
                       variant='info'
-                      className='z-50'
+                      style={{ width: "auto", textAlign: "center", zIndex: 50 }}
                       opacity={1}>
                       8 (base) + Strength Mod ({strMod}) + Proficiency Bonus ({profBonus})
                     </Tooltip>

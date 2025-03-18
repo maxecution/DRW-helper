@@ -12,7 +12,7 @@ const CapacityTooltip = ({ label, value, multiplier, tooltipId }) => (
       place='top-start'
       offset={3}
       variant='info'
-      className='z-50'
+      style={{ width: "auto", textAlign: "center", zIndex: 50 }}
       opacity={1}>
       Strength Score ({value / multiplier}) x {multiplier} lb.
     </Tooltip>
@@ -67,7 +67,7 @@ export const BreathTooltip = ({ conMod }) => {
         place='top-start'
         offset={3}
         variant='info'
-        className='z-50'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
         opacity={1}>
         {rounds} rounds; 1 + Constitution Mod ({conMod}), min. 30 seconds
       </Tooltip>
@@ -87,7 +87,7 @@ export const RunningLongJump = ({ strScore }) => {
         place='top-start'
         offset={3}
         variant='info'
-        className='z-50'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
         opacity={1}>
         Strength Score
       </Tooltip>
@@ -107,7 +107,7 @@ export const StandingLongJump = ({ strScore }) => {
         place='top-start'
         offset={3}
         variant='info'
-        className='z-50'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
         opacity={1}>
         Strength Score / 2
       </Tooltip>
@@ -129,7 +129,7 @@ export const RunningHighJump = ({ strMod, height = 0 }) => {
         place='top-start'
         offset={3}
         variant='info'
-        className='z-50'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
         opacity={1}>
         Jump Height: {jumpHeight} ft. + Additional Reach ({additionalReach} ft.)
       </Tooltip>
@@ -151,7 +151,7 @@ export const StandingHighJump = ({ strMod, height = 0 }) => {
         place='top-start'
         offset={3}
         variant='info'
-        className='z-50'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
         opacity={1}>
         Jump Height: {jumpHeight} ft. + Additional Reach ({additionalReach} ft.)
       </Tooltip>
@@ -202,7 +202,7 @@ export const TrainingDuration = ({ intMod }) => {
           place='top-start'
           offset={3}
           variant='info'
-          className='z-50'
+          style={{ width: "auto", textAlign: "center", zIndex: 50 }}
           opacity={1}>
           10 weeks - Intelligence Mod ({intMod}) {hasTrainer ? "- 2 (Trainer)" : ""}
         </Tooltip>
@@ -217,7 +217,7 @@ export const TrainingDuration = ({ intMod }) => {
           place='top-start'
           offset={3}
           variant='info'
-          className='z-50'
+          style={{ width: "auto", textAlign: "center", zIndex: 50 }}
           opacity={1}>
           25gp per week
         </Tooltip>
