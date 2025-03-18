@@ -13,7 +13,7 @@ function Navbar() {
         {/* <ToggleButton /> */}
 
         {/* Title (Hidden on small screens) */}
-        <h1 className='absolute hidden text-3xl font-bold transform -translate-x-1/2 left-1/2 sm:block'>
+        <h1 className='absolute text-3xl font-bold transform -translate-x-1/2 left-1/2 sm:block'>
           <Link to='/' className='transition hover:text-yellow-400'>
             DRW Helper
           </Link>

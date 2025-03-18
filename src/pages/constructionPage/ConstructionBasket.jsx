@@ -50,7 +50,7 @@ function ConstructionBasket({
   }
 
   return (
-    <div className='w-full max-w-full p-6 mx-auto text-white bg-gray-800 border border-gray-600 rounded-lg shadow-xl'>
+    <div className='w-full max-w-full p-6 mx-auto text-white bg-gray-800 border border-gray-600 rounded-lg shadow-xl md:w-2/3'>
       <h2 className='mb-4 text-3xl font-semibold text-center text-yellow-400'>
         Construction Basket
       </h2>
@@ -70,7 +70,9 @@ function ConstructionBasket({
               const { cost, slots } = tierInfo[expansion.tier] || { cost: 0, slots: 1 };
 
               return (
-                <tr key={expansion.id} className='border-b border-gray-600'>
+                <tr
+                  key={expansion.id}
+                  className='text-sm border-b border-gray-600 sm:text-base text-nowrap'>
                   <td className='p-2 text-left'>{index + 1}</td>
                   <td className='p-2 text-left'>{expansion.name}</td>
                   <td className='p-3 text-left'>{slots}</td>
@@ -87,7 +89,7 @@ function ConstructionBasket({
             })}
           </tbody>
           <tfoot>
-            <tr className='text-yellow-400 bg-gray-800'>
+            <tr className='text-sm text-yellow-400 bg-gray-800 sm:text-base text-nowrap'>
               <td className='p-2 font-semibold text-left'>Total</td>
               <td className='p-2 text-left'>{totalExpansions} Expansion(s)</td>
               <td className='p-3 text-left'>{totalSlots}</td>

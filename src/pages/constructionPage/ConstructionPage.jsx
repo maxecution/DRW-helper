@@ -55,7 +55,7 @@ function ConstructionPage() {
   };
 
   return (
-    <div className='flex flex-col w-full max-w-full text-white bg-gray-900 min-h-min'>
+    <div className='flex flex-col w-full max-w-full min-h-screen text-white bg-gray-900'>
       {/* Main Header */}
       <header className='py-6 text-center bg-gray-800 shadow-lg'>
         <h1 className='text-2xl font-bold text-yellow-400 sm:text-3xl md:text-4xl'>
@@ -64,11 +64,11 @@ function ConstructionPage() {
       </header>
 
       {/* Content Section */}
-      <div className='flex flex-col p-4 md:flex-row gap-8 sm:p-6 md:p-8'>
+      <div className='flex flex-col gap-8 p-4 md:flex-row sm:p-6 md:p-8'>
         {/* Left Section (1/3 Width) */}
-        <div className='w-full md:w-1/3 space-y-6'>
+        <div className='w-full space-y-6 md:w-1/3'>
           {/* Expansion Selector */}
-          <div className='flex flex-col items-center justify-between sm:flex-row gap-4'>
+          <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
             <label
               htmlFor='expansion-select'
               className='w-full font-medium text-left text-yellow-400 text-md sm:w-2/3'>
@@ -106,7 +106,7 @@ function ConstructionPage() {
           {/* Clear Button */}
           <div className='items-center text-center'>
             <button
-              className='px-6 py-2 font-bold text-white bg-gray-700 border border-gray-600 hover:bg-gray-600 rounded-md'
+              className='px-6 py-2 font-bold text-white bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600'
               onClick={handleClear}>
               Clear
             </button>

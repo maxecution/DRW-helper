@@ -88,17 +88,29 @@ function MaxHpCalc() {
     setClasses(updatedClasses);
   };
 
+  const resetToDefault = () => {
+    setClasses([{ class: "Artificer", level: 1 }]);
+    setConstitutionMod(0);
+    setToughFeat(false);
+    setdwarfSpecies(false);
+    setDraconicSorc(false);
+    setMaxHp(0);
+  };
+
   useEffect(() => {
     calculateHp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [classes, constitutionMod, toughFeat, dwarfSpecies, draconicSorc]);
 
   return (
-    <div className='flex flex-col items-center min-h-screen p-6 text-white bg-gray-800'>
-      <h1 className='mb-6 text-3xl font-bold text-yellow-400'>Max HP Calculator</h1>
-
-      <div className='w-80'>
-        <div className='flex items-center mx-5 mb-6 text-nowrap gap-2'>
+    <div className='flex flex-col w-full max-w-full min-h-screen text-white bg-gray-900'>
+      <header className='py-6 text-center bg-gray-800 shadow-lg'>
+        <h1 className='text-2xl font-bold text-yellow-400 sm:text-3xl md:text-4xl'>
+          Max HP Calculator
+        </h1>
+      </header>
+      <div className='mx-auto mt-4 w-80'>
+        <div className='flex items-center gap-2 mx-5 mb-6 text-nowrap'>
           <label htmlFor='constitutionMod' className='block text-gray-300'>
             Constitution Modifier:
           </label>
@@ -110,7 +122,7 @@ function MaxHpCalc() {
             className='w-full p-2 text-white bg-gray-700 rounded'
           />
         </div>
-        <div className='flex items-center justify-center mb-6 text-nowrap gap-5'>
+        <div className='flex items-center justify-center gap-5 mb-6 text-nowrap'>
           <div className='flex items-center gap-2'>
             <label htmlFor='toughFeat' className='block text-gray-300'>
               Tough:
@@ -207,7 +219,15 @@ function MaxHpCalc() {
                 type='number'
                 value={entry.level}
                 min='1'
-                onChange={(e) => updateClass(index, "level", parseInt(e.target.value) || 1)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  updateClass(index, "level", value === "" ? "" : parseInt(value) || 1);
+                }}
+                onBlur={(e) => {
+                  if (e.target.value === "") {
+                    updateClass(index, "level", 1);
+                  }
+                }}
                 className='w-full p-2 text-white bg-gray-700 rounded'
               />
             </div>
@@ -249,7 +269,7 @@ function MaxHpCalc() {
             {index > 0 && (
               <button
                 onClick={() => removeClass(index)}
-                className='w-full px-4 py-2 mt-2 text-white bg-red-600 rounded hover:bg-red-700'>
+                className='w-full px-4 py-2 mt-2 font-bold text-white rounded-md shadow-lg bg-gradient-to-r from-red-400 to-red-600'>
                 Remove Class
               </button>
             )}
@@ -258,14 +278,14 @@ function MaxHpCalc() {
 
         <button
           onClick={addClass}
-          className='w-full px-4 py-2 mb-4 text-yellow-400 bg-gray-600 rounded hover:bg-gray-700 hover:text-yellow-500'>
+          className='w-full px-4 py-2 mb-4 font-bold text-white rounded-md shadow-lg bg-gradient-to-r from-green-400 to-green-600'>
           Add Another Class
         </button>
 
         <button
-          onClick={calculateHp}
-          className='w-full px-4 py-2 mb-6 font-bold text-gray-800 bg-yellow-400 rounded hover:bg-yellow-500'>
-          Calculate Max HP
+          onClick={resetToDefault}
+          className='w-full px-4 py-2 mb-6 font-bold text-white rounded-md shadow-lg bg-gradient-to-r from-gray-400 to-gray-600'>
+          Clear
         </button>
 
         <div className='text-xl font-bold text-center text-yellow-400'>Maximum HP: {maxHp}</div>

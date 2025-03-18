@@ -10,9 +10,9 @@ import GeneralRules from "./pages/generalRules/GeneralRules.jsx";
 function App() {
   return (
     <Router>
-      <div className='container flex flex-col min-h-screen bg-gray-900 min-w-min'>
+      <div className='flex flex-col min-h-screen bg-gray-900 min-w-min'>
         <Navbar />
-        <div className='flex-grow pt-20'>
+        <div className='w-full pt-16'>
           <Switch>
             <Route path='/' element={<HelloWorld />} />
             <Route path='/construction-planner' element={<ConstructionPage />} />
