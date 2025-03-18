@@ -1,7 +1,7 @@
 import ArrowButton from "../../utils/ArrowButton.jsx";
 import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputUtils.js";
 
-function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
+function EmptyPlotsInput({ value, setValue, min = 0, max = 999 }) {
   return (
     <div className='flex flex-row items-center justify-between gap-4'>
       <label htmlFor='empty-plots-amount' className='font-medium text-yellow-400 text-md'>
@@ -36,4 +36,4 @@ function ExistingStructuresInput({ value, setValue, min = 0, max = 999 }) {
   );
 }
 
-export default ExistingStructuresInput;
+export default EmptyPlotsInput;

@@ -3,7 +3,7 @@ import Select from "react-select";
 import ExpansionDetails from "./ExpansionDetails.jsx";
 import ConstructionBasket from "./ConstructionBasket.jsx";
 import ExistingStructuresInput from "./ExistingStructuresInput.jsx";
-import UnusedSlotsInput from "./UnusedSlotsInput .jsx";
+import UnusedSlotsInput from "./UnusedSlotsInput.jsx";
 import EmptyPlotsInput from "./EmptyPlotsInput.jsx";
 import { selectStyle } from "../../utils/Styles.js";
 
