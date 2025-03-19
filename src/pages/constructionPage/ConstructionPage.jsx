@@ -10,6 +10,8 @@ import { selectStyle } from "../../utils/Styles.js";
 function ConstructionPage() {
   const [constructionData, setConstructionData] = useState([]);
   const [expansion, setExpansion] = useState(null);
+  const [existingExpansions, setExistingExpansions] = useState([]);
+
   const [addedExpansions, setAddedExpansions] = useState([]);
   const [emptyPlotsAmount, setEmptyPlotsAmount] = useState(0);
   const [existingStructureAmount, setExistingStructureAmount] = useState(0);
@@ -88,6 +90,8 @@ function ConstructionPage() {
           </div>
           <ExistingExpansionsSelect
             constructionData={constructionData}
+            existingExpansions={existingExpansions}
+            setExistingExpansions={setExistingExpansions}
             setTotalSlots={setExistingStructureAmount}
           />
           {/* Unused Slots */}
@@ -113,6 +117,7 @@ function ConstructionPage() {
           <ExpansionDetails
             expansion={expansion}
             expansions={addedExpansions}
+            existingExpansions={existingExpansions}
             onAddExpansion={handleAddExpansion}
           />
         </div>

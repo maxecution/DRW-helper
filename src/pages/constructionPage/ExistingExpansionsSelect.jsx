@@ -1,11 +1,13 @@
-import { useState } from "react";
 import Select from "react-select";
 import { Tooltip } from "react-tooltip";
 import { selectStyle } from "../../utils/Styles";
 
-const ExistingExpansionsSelect = ({ constructionData, setTotalSlots }) => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
+const ExistingExpansionsSelect = ({
+  constructionData,
+  existingExpansions,
+  setExistingExpansions,
+  setTotalSlots,
+}) => {
   // Map constructionData to options for react-select
   const expansionOptions = constructionData.map((e) => ({
     value: e.id,
@@ -23,8 +25,8 @@ const ExistingExpansionsSelect = ({ constructionData, setTotalSlots }) => {
   };
 
   const handleChange = (selected) => {
-    const updatedSelectedOptions = selected || [];
-    const finalSelectedOptions = updatedSelectedOptions.map((option) => {
+    const updatedExistingExpansions = selected || [];
+    const finalExistingExpansions = updatedExistingExpansions.map((option) => {
       // If the option is repeatable, create a unique duplicate
       if (expansionOptions.find((exp) => exp.value === option.value && exp.repeatable)) {
         return {
@@ -36,8 +38,8 @@ const ExistingExpansionsSelect = ({ constructionData, setTotalSlots }) => {
       return option;
     });
 
-    setSelectedOptions(finalSelectedOptions);
-    const totalSlots = calculateTotalSlots(finalSelectedOptions);
+    setExistingExpansions(finalExistingExpansions);
+    const totalSlots = calculateTotalSlots(finalExistingExpansions);
     setTotalSlots(totalSlots);
   };
 
@@ -63,7 +65,7 @@ const ExistingExpansionsSelect = ({ constructionData, setTotalSlots }) => {
         isSearchable
         isClearable
         onChange={handleChange}
-        value={selectedOptions}
+        value={existingExpansions}
         placeholder='Expansions...'
         className='sm:w-2/3 md:w-full'
         styles={selectStyle}

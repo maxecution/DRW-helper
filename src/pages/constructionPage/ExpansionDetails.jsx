@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
 import { expansionPropTypes, tierInfo } from "../../utils/ExpansionUtils";
 
-function ExpansionDetails({ expansion, expansions, onAddExpansion }) {
+function ExpansionDetails({ expansion, expansions, existingExpansions, onAddExpansion }) {
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
     if (expansion) {
       if (expansion.repeatable) {
         setBtnDisabled(false);
-      } else if (expansions.includes(expansion)) {
+      } else if (
+        expansions.includes(expansion) ||
+        existingExpansions.some((exp) => exp.label === expansion.name)
+      ) {
         setBtnDisabled(true);
       } else {
         setBtnDisabled(false);
       }
     }
-  }, [expansion, expansions]);
+  }, [expansion, expansions, existingExpansions]);
 
   if (!expansion) {
     return <p>Please select an expansion to see the details.</p>;
@@ -51,6 +54,9 @@ function ExpansionDetails({ expansion, expansions, onAddExpansion }) {
           Add Expansion
         </button>
       </div>
+      {console.log(existingExpansions)}
+      {console.log(expansions)}
+      {console.log(expansion)}
     </div>
   );
 }
