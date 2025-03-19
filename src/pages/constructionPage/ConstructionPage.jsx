@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import ExpansionDetails from "./ExpansionDetails.jsx";
 import ConstructionBasket from "./ConstructionBasket.jsx";
-import ExistingStructuresInput from "./ExistingStructuresInput.jsx";
+import ExistingExpansionsSelect from "./ExistingExpansionsSelect.jsx";
 import UnusedSlotsInput from "./UnusedSlotsInput.jsx";
 import EmptyPlotsInput from "./EmptyPlotsInput.jsx";
 import { selectStyle } from "../../utils/Styles.js";
@@ -68,11 +68,11 @@ function ConstructionPage() {
         {/* Left Section (1/3 Width) */}
         <div className='w-full space-y-6 md:w-1/3'>
           {/* Expansion Selector */}
-          <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
+          <div className='flex flex-col justify-between gap-4 items-left'>
             <label
               htmlFor='expansion-select'
-              className='w-full font-medium text-left text-yellow-400 text-md sm:w-2/3'>
-              Select an expansion:
+              className='w-full font-medium text-left text-yellow-400 text-md'>
+              New expansion:
             </label>
             <Select
               id='expansion-select'
@@ -83,26 +83,21 @@ function ConstructionPage() {
               isClearable={true}
               placeholder='Expansions...'
               styles={selectStyle}
-              className='w-full sm:w-1/2'
+              className='sm:w-2/3 md:w-full'
             />
           </div>
-
-          {/* Existing Structures */}
-          <ExistingStructuresInput
-            value={existingStructureAmount}
-            setValue={setExistingStructureAmount}
+          <ExistingExpansionsSelect
+            constructionData={constructionData}
+            setTotalSlots={setExistingStructureAmount}
           />
-
           {/* Unused Slots */}
           <UnusedSlotsInput
             value={unusedSlotsAmount}
             setValue={setUnusedSlotsAmount}
             max={existingStructureAmount}
           />
-
           {/* Empty Plots */}
           <EmptyPlotsInput value={emptyPlotsAmount} setValue={setEmptyPlotsAmount} />
-
           {/* Clear Button */}
           <div className='items-center text-center'>
             <button
