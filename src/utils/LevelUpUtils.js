@@ -1,4 +1,17 @@
-export const getLevelUpCost = (level) => level * 2;
+export const getLevelUpCost = (level) => {
+  if (level >= 20) {
+    return level * 3;
+  }
+  return level * 2;
+};
+
+export const getLevelUpCostForRange = (startLevel, endLevel) => {
+  let totalCost = 0;
+  for (let level = startLevel; level < endLevel; level++) {
+    totalCost += getLevelUpCost(level);
+  }
+  return totalCost;
+};
 
 export const calculateLevelUpDates = (currentLevel, desiredLevel, baseXp, lastLeveledDate) => {
   const today = new Date();

@@ -1,28 +1,35 @@
-export const handleNumberChange = (newValue, min, max, setValue) => {
+export const handleNumberChange = (newValue, setValue) => {
   // Allow the input field to be temporarily empty
   if (newValue === "") {
     setValue("");
     return;
   }
-  // Remove any leading zeros and check if the number is a positive integer
+
   let sanitizedValue = newValue.replace(/^0+/, ""); // Remove leading zeros
-  if (sanitizedValue === "") sanitizedValue = min; // If empty, default to 0
 
   // Validate if the input is a positive integer
   if (!/^\d+$/.test(sanitizedValue)) {
-    // If it's not a valid positive integer, return the current value
+    // If it's not a valid positive integer, return without updating
     return;
   }
 
-  let num = Number(sanitizedValue);
-  if (isNaN(num)) num = 0;
-  if (num < min) num = min;
-  if (num > max) num = max;
+  // Update the value without enforcing min/max constraints
+  setValue(sanitizedValue);
+};
 
-  // Only update if the value has actually changed to avoid unnecessary re-renders
-  if (num !== newValue) {
-    setValue(num);
+export const handleNumberBlur = (value, min, max, setValue) => {
+  let num = Number(value);
+
+  // Enforce min and max constraints on blur
+  if (isNaN(num) || value === "") {
+    num = min; // Default to min if the input is invalid or empty
+  } else if (num < min) {
+    num = min;
+  } else if (num > max) {
+    num = max;
   }
+
+  setValue(num);
 };
 
 export const handleIncrementDecrement = (change, min, max, setValue) => {

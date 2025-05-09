@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { calculateLevelUpDates } from "../../utils/LevelUpUtils.js";
+import { calculateLevelUpDates, getLevelUpCostForRange } from "../../utils/LevelUpUtils.js";
 import { Tooltip } from "react-tooltip";
-import { handleNumberChange } from "../../utils/InputUtils.js";
+import { handleNumberChange, handleNumberBlur } from "../../utils/InputUtils.js";
 
 function LevelUpForm() {
   const [currentLevel, setCurrentLevel] = useState("");
@@ -13,6 +13,7 @@ function LevelUpForm() {
     currentLevel: "",
     desiredLevel: "",
     availableXp: "",
+    totalXpNeeded: "",
     lastLeveledDate: "",
   });
 
@@ -25,14 +26,15 @@ function LevelUpForm() {
       currentLevel: "",
       desiredLevel: "",
       availableXp: "",
+      totalXpNeeded: "",
       lastLeveledDate: "",
     };
 
-    if (isNaN(currentLevel) || currentLevel < 3 || currentLevel > 19) {
+    if (isNaN(currentLevel) || currentLevel < 3 || currentLevel > 98) {
       errorMessages.currentLevel = "Please enter a valid current level.";
       isValid = false;
     }
-    if (isNaN(desiredLevel) || desiredLevel <= currentLevel || desiredLevel > 20) {
+    if (isNaN(desiredLevel) || desiredLevel <= currentLevel || desiredLevel > 99) {
       errorMessages.desiredLevel = "Please enter a valid desired level.";
       isValid = false;
     }
@@ -59,8 +61,12 @@ function LevelUpForm() {
         lastLeveledDate
       );
       const finalDate = levelUpDates[levelUpDates.length - 1].date;
+      const totalXpNeeded =
+        getLevelUpCostForRange(parseInt(currentLevel, 10), parseInt(desiredLevel, 10)) -
+        availableXp;
 
-      let message = `<p class="mb-2">You can reach level <b>${desiredLevel}</b> by <b>${finalDate.toDateString()}</b></p>`;
+      let message = `<p class="mb-1">You can reach level <b>${desiredLevel}</b> by <b>${finalDate.toDateString()}</b></p>
+      <p class="mb-2 text-xs">Based on your available XP, you need an additional <b>${totalXpNeeded}</b> XP</p>`;
       message += `<ul class="list-disc">`;
 
       levelUpDates.forEach(({ level, date }) => {
@@ -83,6 +89,7 @@ function LevelUpForm() {
       currentLevel: "",
       desiredLevel: "",
       availableXp: "",
+      totalXpNeeded: "",
       lastLeveledDate: "",
     });
   };
@@ -108,14 +115,9 @@ function LevelUpForm() {
                 id='current-level'
                 name='current-level'
                 value={currentLevel}
-                onChange={(e) => handleNumberChange(e.target.value, 3, 19, setCurrentLevel)}
-                onBlur={(e) => {
-                  if (e.target.value === "") {
-                    setCurrentLevel(3);
-                  }
-                }}
-                min='3'
-                max='19'
+                onChange={(e) => handleNumberChange(e.target.value, setCurrentLevel)}
+                onBlur={(e) => handleNumberBlur(e.target.value, 3, 98, setCurrentLevel)}
+                max='98'
                 placeholder='3-19'
                 className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
                 data-tooltip-id='current-level-tooltip'
@@ -140,14 +142,9 @@ function LevelUpForm() {
                 id='desired-level'
                 name='desired-level'
                 value={desiredLevel}
-                onChange={(e) => handleNumberChange(e.target.value, 4, 20, setDesiredLevel)}
-                onBlur={(e) => {
-                  if (e.target.value === "") {
-                    setDesiredLevel(4);
-                  }
-                }}
-                min='4'
-                max='20'
+                onChange={(e) => handleNumberChange(e.target.value, setDesiredLevel)}
+                onBlur={(e) => handleNumberBlur(e.target.value, 2, 99, setDesiredLevel)}
+                max='99'
                 placeholder='4-20'
                 className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
                 data-tooltip-id='desired-level-tooltip'
