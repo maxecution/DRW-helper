@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { calculateLevelUpDates, getLevelUpCostForRange } from "../../utils/LevelUpUtils.js";
 import { Tooltip } from "react-tooltip";
-import { handleNumberChange, handleNumberBlur } from "../../utils/InputUtils.js";
+import {
+  handleNumberChange,
+  handleNumberBlur,
+  handleDateChange,
+  handleDateBlur,
+} from "../../utils/InputUtils.js";
 
 function LevelUpForm() {
   const [currentLevel, setCurrentLevel] = useState("");
@@ -143,7 +148,7 @@ function LevelUpForm() {
                 name='desired-level'
                 value={desiredLevel}
                 onChange={(e) => handleNumberChange(e.target.value, setDesiredLevel)}
-                onBlur={(e) => handleNumberBlur(e.target.value, 2, 99, setDesiredLevel)}
+                onBlur={(e) => handleNumberBlur(e.target.value, 4, 99, setDesiredLevel)}
                 max='99'
                 placeholder='4-20'
                 className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
@@ -172,12 +177,8 @@ function LevelUpForm() {
                 id='available-xp'
                 name='available-xp'
                 value={availableXp}
-                onChange={(e) => handleNumberChange(e.target.value, 0, 999, setAvailableXp)}
-                onBlur={(e) => {
-                  if (e.target.value === "") {
-                    setAvailableXp(0);
-                  }
-                }}
+                onChange={(e) => handleNumberChange(e.target.value, setAvailableXp)}
+                onBlur={(e) => handleNumberBlur(e.target.value, 0, 999, setAvailableXp)}
                 min='0'
                 max='999'
                 placeholder='0-999'
@@ -204,12 +205,8 @@ function LevelUpForm() {
                 id='last-leveled-date'
                 name='last-leveled-date'
                 value={lastLeveledDate}
-                onChange={(e) => handleNumberChange(e.target.value, 0, 999, setLastLeveledDate)}
-                onBlur={(e) => {
-                  if (e.target.value === "") {
-                    setLastLeveledDate("");
-                  }
-                }}
+                onChange={(e) => handleDateChange(e.target.value, setLastLeveledDate)}
+                onBlur={(e) => handleDateBlur(e.target.value, setLastLeveledDate)}
                 className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
                 data-tooltip-id='last-leveled-date-tooltip'
               />

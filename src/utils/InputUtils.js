@@ -32,6 +32,42 @@ export const handleNumberBlur = (value, min, max, setValue) => {
   setValue(num);
 };
 
+export const handleDateChange = (newValue, setValue) => {
+  // Allow the input field to be temporarily empty
+  if (newValue === "") {
+    setValue("");
+    return;
+  }
+
+  // Validate if the input is in the format YYYY-MM-DD
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateRegex.test(newValue)) {
+    // If it's not a valid date format, return without updating
+    return;
+  }
+
+  // Update the value if it matches the date format
+  setValue(newValue);
+};
+
+export const handleDateBlur = (value, setValue) => {
+  // If the input is empty, reset to today's date
+  if (value === "") {
+    setValue(new Date().toISOString().split("T")[0]); // Set to today's date in YYYY-MM-DD format
+    return;
+  }
+
+  // Parse the input date
+  const inputDate = new Date(value);
+
+  // Validate the date
+  if (isNaN(inputDate.getTime())) {
+    setValue(new Date().toISOString().split("T")[0]); // Set to today's date if invalid
+  } else {
+    setValue(value); // Keep the valid date
+  }
+};
+
 export const handleIncrementDecrement = (change, min, max, setValue) => {
   setValue((prev) => {
     let newValue = prev + change;
