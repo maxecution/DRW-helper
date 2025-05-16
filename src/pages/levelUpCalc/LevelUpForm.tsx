@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { calculateLevelUpDates, getLevelUpCostForRange } from "../../utils/LevelUpUtils.js";
 import Select from "react-select";
 import { Tooltip } from "react-tooltip";
@@ -8,11 +8,13 @@ import {
   handleDateChange,
   handleDateBlur,
 } from "../../utils/InputUtils.js";
-import { fetchPlayerData, PlayerData } from "../../utils/fetchPlayerData.js";
+import { fetchPlayerData, PlayerData, Character } from "../../utils/fetchPlayerData.js";
 import { selectStyle } from "../../utils/Styles.js";
 
 function LevelUpForm() {
   const [playerData, setPlayerData] = useState<PlayerData[]>([]);
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerData | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [currentLevel, setCurrentLevel] = useState<number | undefined>(undefined);
   const [desiredLevel, setDesiredLevel] = useState<number | undefined>(undefined);
   const [availableXp, setAvailableXp] = useState<number | undefined>(undefined);
@@ -27,6 +29,62 @@ function LevelUpForm() {
   });
 
   const today = new Date();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchPlayerData();
+      setPlayerData(data);
+    };
+    fetchData();
+    console.log("Player data fetched:", playerData);
+  }, []);
+
+  useEffect(() => {
+    const loadPlayerData = async () => {
+      const data = await fetchPlayerData();
+      setPlayerData(data);
+    };
+    loadPlayerData();
+  }, []);
+
+  const playerOptions = playerData.map((player) => ({
+    value: player.id,
+    label: player.playerName,
+  }));
+
+  const characterOptions = selectedPlayer
+    ? selectedPlayer.characters.map((character) => ({
+        value: character.id,
+        label: character.characterName,
+      }))
+    : [];
+
+  const handlePlayerChange = (selectedOption) => {
+    if (selectedOption === null) {
+      setSelectedPlayer(null);
+      setSelectedCharacter(null);
+      return;
+    }
+
+    const selectedPlayerData = playerData.find((player) => player.id === selectedOption.value);
+    setSelectedPlayer(selectedPlayerData ?? null);
+    setAvailableXp(selectedPlayerData ? parseInt(selectedPlayerData.availableXP) : undefined);
+    setSelectedCharacter(null);
+  };
+
+  const handleCharacterChange = (selectedOption) => {
+    if (selectedOption === null) {
+      setSelectedCharacter(null);
+      return;
+    }
+
+    const selectedCharacterData = selectedPlayer?.characters.find(
+      (character) => character.id === selectedOption.value
+    );
+    setSelectedCharacter(selectedCharacterData ?? null);
+    setCurrentLevel(selectedCharacterData ? parseInt(selectedCharacterData.level) : undefined);
+    setLastLeveledDate(selectedCharacterData ? selectedCharacterData.lastLevelUp : undefined);
+  };
 
   // Form validation
   const validateForm = () => {
@@ -98,6 +156,8 @@ function LevelUpForm() {
   };
 
   const handleClear = () => {
+    setSelectedPlayer(null);
+    setSelectedCharacter(null);
     setCurrentLevel(undefined);
     setDesiredLevel(undefined);
     setAvailableXp(undefined);
@@ -120,27 +180,54 @@ function LevelUpForm() {
         </h1>
       </header>
       <div className='flex flex-col items-center min-h-screen p-6 gap-4'>
-        {/* TODO: Add player and character selection */}
-        {/* <div className='p-3 space-y-6 bg-gray-800 border border-gray-600 rounded-md'>
+        <div className='p-3 space-y-6 bg-gray-800 border border-gray-600 rounded-md'>
           <div className='grid grid-cols-2 gap-4'>
             <div id='player-name-block'>
               <label
-                htmlFor='player-name'
+                htmlFor='player-name-select'
                 className='block mb-1 text-sm font-semibold text-yellow-400'>
                 Player Name
               </label>
-              <Select id='player-name' styles={selectStyle} className='w-40' />
+              <Select
+                id='player-name-select'
+                styles={selectStyle}
+                className='w-40'
+                value={
+                  selectedPlayer
+                    ? { value: selectedPlayer.id, label: selectedPlayer.playerName }
+                    : null
+                }
+                isClearable
+                isSearchable
+                isDisabled={playerData.length === 0}
+                options={playerOptions}
+                onChange={handlePlayerChange}
+              />
             </div>
             <div id='character-name-block'>
               <label
-                htmlFor='character-name'
+                htmlFor='character-name-select'
                 className='block mb-1 text-sm font-semibold text-yellow-400'>
-                Player Name
+                Character Name
               </label>
-              <Select id='character-name' styles={selectStyle} className='w-40' />
+              <Select
+                id='character-name-select'
+                styles={selectStyle}
+                className='w-40'
+                value={
+                  selectedCharacter
+                    ? { value: selectedCharacter.id, label: selectedCharacter.characterName }
+                    : null
+                }
+                isClearable
+                isSearchable
+                isDisabled={!selectedPlayer}
+                options={characterOptions}
+                onChange={handleCharacterChange}
+              />
             </div>
           </div>
-        </div> */}
+        </div>
         <form className='p-3 space-y-6 bg-gray-800 border border-gray-600 rounded-md'>
           <div className='grid grid-cols-2 gap-4'>
             <div id='current-level-block'>
