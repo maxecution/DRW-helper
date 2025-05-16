@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes as Switch } from "react-router-dom";
 import ConstructionPage from "./pages/constructionPage/ConstructionPage.jsx";
 import HelloWorld from "./pages/homePage/HelloWorld.jsx";
-import LevelUpForm from "./pages/levelUpCalc/LevelUpForm.jsx";
+import LevelUpForm from "./pages/levelUpCalc/LevelUpForm.tsx";
 import MaxHpCalc from "./pages/maxHpCalc/MaxHpCalc.jsx";
 import Navbar from "./pages/navBar/NavBar.jsx";
 import Footer from "./pages/footer/Footer.jsx";

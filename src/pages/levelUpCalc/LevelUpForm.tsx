@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { calculateLevelUpDates, getLevelUpCostForRange } from "../../utils/LevelUpUtils.js";
+import Select from "react-select";
 import { Tooltip } from "react-tooltip";
 import {
   handleNumberChange,
@@ -7,12 +8,15 @@ import {
   handleDateChange,
   handleDateBlur,
 } from "../../utils/InputUtils.js";
+import { fetchPlayerData, PlayerData } from "../../utils/fetchPlayerData.js";
+import { selectStyle } from "../../utils/Styles.js";
 
 function LevelUpForm() {
-  const [currentLevel, setCurrentLevel] = useState("");
-  const [desiredLevel, setDesiredLevel] = useState("");
-  const [availableXp, setAvailableXp] = useState("");
-  const [lastLeveledDate, setLastLeveledDate] = useState("");
+  const [playerData, setPlayerData] = useState<PlayerData[]>([]);
+  const [currentLevel, setCurrentLevel] = useState<number | undefined>(undefined);
+  const [desiredLevel, setDesiredLevel] = useState<number | undefined>(undefined);
+  const [availableXp, setAvailableXp] = useState<number | undefined>(undefined);
+  const [lastLeveledDate, setLastLeveledDate] = useState<string | undefined>(undefined);
   const [resultMessage, setResultMessage] = useState("");
   const [errors, setErrors] = useState({
     currentLevel: "",
@@ -35,15 +39,26 @@ function LevelUpForm() {
       lastLeveledDate: "",
     };
 
-    if (isNaN(currentLevel) || currentLevel < 3 || currentLevel > 98) {
+    if (
+      currentLevel === undefined ||
+      isNaN(currentLevel) ||
+      currentLevel < 3 ||
+      currentLevel > 98
+    ) {
       errorMessages.currentLevel = "Please enter a valid current level.";
       isValid = false;
     }
-    if (isNaN(desiredLevel) || desiredLevel <= currentLevel || desiredLevel > 99) {
+    if (
+      isNaN(desiredLevel ?? NaN) ||
+      (desiredLevel ?? 0) <= (currentLevel ?? 0) ||
+      (desiredLevel ?? 0) > 99
+    ) {
       errorMessages.desiredLevel = "Please enter a valid desired level.";
       isValid = false;
     }
-    if (availableXp < 0 || availableXp > 999) {
+    if (availableXp === undefined) {
+      setAvailableXp(0);
+    } else if (availableXp < 0 || availableXp > 999) {
       errorMessages.availableXp = "Please enter a valid XP amount.";
       isValid = false;
     }
@@ -58,7 +73,7 @@ function LevelUpForm() {
 
   const handleSubmit = () => {
     if (validateForm()) {
-      const baseXp = parseInt(availableXp, 10) || 0;
+      const baseXp = availableXp || 0;
       const levelUpDates = calculateLevelUpDates(
         currentLevel,
         desiredLevel,
@@ -66,9 +81,7 @@ function LevelUpForm() {
         lastLeveledDate
       );
       const finalDate = levelUpDates[levelUpDates.length - 1].date;
-      const totalXpNeeded =
-        getLevelUpCostForRange(parseInt(currentLevel, 10), parseInt(desiredLevel, 10)) -
-        availableXp;
+      const totalXpNeeded = getLevelUpCostForRange(currentLevel, desiredLevel) - (availableXp ?? 0);
 
       let message = `<p class="mb-1">You can reach level <b>${desiredLevel}</b> by <b>${finalDate.toDateString()}</b></p>
       <p class="mb-2 text-xs">Based on your available XP, you need an additional <b>${totalXpNeeded}</b> XP</p>`;
@@ -85,10 +98,10 @@ function LevelUpForm() {
   };
 
   const handleClear = () => {
-    setCurrentLevel("");
-    setDesiredLevel("");
-    setAvailableXp("");
-    setLastLeveledDate("");
+    setCurrentLevel(undefined);
+    setDesiredLevel(undefined);
+    setAvailableXp(undefined);
+    setLastLeveledDate(undefined);
     setResultMessage("");
     setErrors({
       currentLevel: "",
@@ -106,7 +119,28 @@ function LevelUpForm() {
           Level Up Calculator
         </h1>
       </header>
-      <div className='flex flex-col items-center min-h-screen p-6'>
+      <div className='flex flex-col items-center min-h-screen p-6 gap-4'>
+        {/* TODO: Add player and character selection */}
+        {/* <div className='p-3 space-y-6 bg-gray-800 border border-gray-600 rounded-md'>
+          <div className='grid grid-cols-2 gap-4'>
+            <div id='player-name-block'>
+              <label
+                htmlFor='player-name'
+                className='block mb-1 text-sm font-semibold text-yellow-400'>
+                Player Name
+              </label>
+              <Select id='player-name' styles={selectStyle} className='w-40' />
+            </div>
+            <div id='character-name-block'>
+              <label
+                htmlFor='character-name'
+                className='block mb-1 text-sm font-semibold text-yellow-400'>
+                Player Name
+              </label>
+              <Select id='character-name' styles={selectStyle} className='w-40' />
+            </div>
+          </div>
+        </div> */}
         <form className='p-3 space-y-6 bg-gray-800 border border-gray-600 rounded-md'>
           <div className='grid grid-cols-2 gap-4'>
             <div id='current-level-block'>
@@ -119,7 +153,7 @@ function LevelUpForm() {
                 type='number'
                 id='current-level'
                 name='current-level'
-                value={currentLevel}
+                value={currentLevel ?? ""}
                 onChange={(e) => handleNumberChange(e.target.value, setCurrentLevel)}
                 onBlur={(e) => handleNumberBlur(e.target.value, 3, 98, setCurrentLevel)}
                 max='98'
@@ -132,7 +166,7 @@ function LevelUpForm() {
                 place='top-end'
                 variant='error'
                 style={{ width: "auto", textAlign: "center", zIndex: 50 }}
-                isOpen={errors.currentLevel}>
+                isOpen={!!errors.currentLevel}>
                 {errors.currentLevel}
               </Tooltip>
             </div>
@@ -146,7 +180,7 @@ function LevelUpForm() {
                 type='number'
                 id='desired-level'
                 name='desired-level'
-                value={desiredLevel}
+                value={desiredLevel ?? ""}
                 onChange={(e) => handleNumberChange(e.target.value, setDesiredLevel)}
                 onBlur={(e) => handleNumberBlur(e.target.value, 4, 99, setDesiredLevel)}
                 max='99'
@@ -159,7 +193,7 @@ function LevelUpForm() {
                 place='top-start'
                 variant='error'
                 style={{ width: "auto", textAlign: "center", zIndex: 50 }}
-                isOpen={errors.desiredLevel}>
+                isOpen={!!errors.desiredLevel}>
                 {errors.desiredLevel}
               </Tooltip>
             </div>
@@ -176,7 +210,7 @@ function LevelUpForm() {
                 type='number'
                 id='available-xp'
                 name='available-xp'
-                value={availableXp}
+                value={availableXp ?? ""}
                 onChange={(e) => handleNumberChange(e.target.value, setAvailableXp)}
                 onBlur={(e) => handleNumberBlur(e.target.value, 0, 999, setAvailableXp)}
                 min='0'
@@ -190,7 +224,7 @@ function LevelUpForm() {
                 place='top-end'
                 variant='error'
                 style={{ width: "auto", textAlign: "center", zIndex: 50 }}
-                isOpen={errors.availableXp}>
+                isOpen={!!errors.availableXp}>
                 {errors.availableXp}
               </Tooltip>
             </div>
@@ -204,7 +238,7 @@ function LevelUpForm() {
                 type='date'
                 id='last-leveled-date'
                 name='last-leveled-date'
-                value={lastLeveledDate}
+                value={lastLeveledDate ?? ""}
                 onChange={(e) => handleDateChange(e.target.value, setLastLeveledDate)}
                 onBlur={(e) => handleDateBlur(e.target.value, setLastLeveledDate)}
                 className='w-40 px-3 py-2 text-white bg-gray-700 border border-gray-600 rounded-md'
@@ -215,7 +249,7 @@ function LevelUpForm() {
                 place='top-start'
                 variant='error'
                 style={{ width: "auto", textAlign: "center", zIndex: 50 }}
-                isOpen={errors.lastLeveledDate}>
+                isOpen={!!errors.lastLeveledDate}>
                 {errors.lastLeveledDate}
               </Tooltip>
             </div>

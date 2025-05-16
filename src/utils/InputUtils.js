@@ -53,7 +53,7 @@ export const handleDateChange = (newValue, setValue) => {
 export const handleDateBlur = (value, setValue) => {
   // If the input is empty, reset to today's date
   if (value === "") {
-    setValue(new Date().toISOString().split("T")[0]); // Set to today's date in YYYY-MM-DD format
+    setValue(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]); // Set date to a month ago in YYYY-MM-DD format
     return;
   }
 
@@ -62,7 +62,7 @@ export const handleDateBlur = (value, setValue) => {
 
   // Validate the date
   if (isNaN(inputDate.getTime())) {
-    setValue(new Date().toISOString().split("T")[0]); // Set to today's date if invalid
+    setValue(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]); // Set to a date a month ago if invalid
   } else {
     setValue(value); // Keep the valid date
   }

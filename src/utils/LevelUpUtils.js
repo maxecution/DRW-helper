@@ -7,7 +7,7 @@ export const getLevelUpCost = (level) => {
 
 export const getLevelUpCostForRange = (startLevel, endLevel) => {
   let totalCost = 0;
-  for (let level = startLevel; level < endLevel; level++) {
+  for (let level = startLevel + 1; level <= endLevel; level++) {
     totalCost += getLevelUpCost(level);
   }
   return totalCost;
