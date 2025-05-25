@@ -1,12 +1,26 @@
 import ArrowButton from "../../utils/ArrowButton.jsx";
 import { handleNumberChange, handleIncrementDecrement } from "../../utils/InputUtils.js";
+import { Tooltip } from "react-tooltip";
 
 function EmptyPlotsInput({ value, setValue, min = 0, max = 999 }) {
   return (
     <div className='flex flex-row items-center justify-between gap-4'>
-      <label htmlFor='empty-plots-amount' className='font-medium text-yellow-400 text-md'>
+      <label
+        id='empty-plots-amount-label'
+        htmlFor='empty-plots-amount'
+        data-tooltip-id='empty-plots-amount-tooltip'
+        className='font-medium text-yellow-400 text-md'>
         Number of empty plots:
       </label>
+      <Tooltip
+        id='empty-plots-amount-tooltip'
+        place='top-start'
+        variant='info'
+        style={{ width: "auto", textAlign: "center", zIndex: 50 }}
+        opacity={1}>
+        Empty plots refer to the number of plots you already own that do not have any structures
+        built on them.
+      </Tooltip>
       <div className='flex items-center'>
         <ArrowButton
           elementId='empty-plots-amount'

@@ -95,11 +95,7 @@ function ConstructionPage() {
             setTotalSlots={setExistingStructureAmount}
           />
           {/* Unused Slots */}
-          <UnusedSlotsInput
-            value={unusedSlotsAmount}
-            setValue={setUnusedSlotsAmount}
-            max={existingStructureAmount}
-          />
+          <UnusedSlotsInput value={unusedSlotsAmount} setValue={setUnusedSlotsAmount} />
           {/* Empty Plots */}
           <EmptyPlotsInput value={emptyPlotsAmount} setValue={setEmptyPlotsAmount} />
           {/* Clear Button */}
