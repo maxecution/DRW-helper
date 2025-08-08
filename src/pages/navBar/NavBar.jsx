@@ -13,7 +13,7 @@ function Navbar() {
         {/* <ToggleButton /> */}
 
         {/* Title (Hidden on small screens) */}
-        <h1 className='absolute text-3xl font-bold transform -translate-x-1/2 left-1/2 sm:block'>
+        <h1 className='absolute text-xl sm:text-3xl font-bold transform -translate-x-1/2 left-1/2 sm:block'>
           <Link to='/' className='transition hover:text-yellow-400'>
             DRW Helper
           </Link>
@@ -22,7 +22,7 @@ function Navbar() {
         {/* Links */}
         <div className='flex items-center ml-auto'>
           {/* Desktop Links */}
-          <ul className='hidden space-x-6 lg:flex'>
+          <ul className='hidden space-x-6 xl:flex'>
             <li>
               <Link to='/general-rules' className='transition hover:text-yellow-400'>
                 General Rules
@@ -43,11 +43,16 @@ function Navbar() {
                 Construction
               </Link>
             </li>
+            <li>
+              <Link to='/festival-of-giants' className='transition hover:text-yellow-400'>
+                Festival of Giants
+              </Link>
+            </li>
           </ul>
 
           {/* Burger Menu (Visible on small screens) */}
           <button
-            className='block text-2xl transition lg:hidden hover:text-yellow-400'
+            className='block text-2xl transition xl:hidden hover:text-yellow-400'
             onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <FiX /> : <FiMenu />}
           </button>
@@ -56,7 +61,7 @@ function Navbar() {
 
       {/* Collapsible Menu for Small Screens */}
       {isMenuOpen && (
-        <div className='z-20 p-4 mt-2 bg-gray-700 rounded-md shadow-lg sm:hidden'>
+        <div className='z-20 p-4 mt-2 bg-gray-700 rounded-md shadow-lg xl:hidden'>
           <ul className='space-y-4'>
             <li>
               <Link
@@ -96,6 +101,14 @@ function Navbar() {
                 className='block transition hover:text-yellow-400'
                 onClick={() => setIsMenuOpen(false)}>
                 Construction
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/festival-of-giants'
+                className='block transition hover:text-yellow-400'
+                onClick={() => setIsMenuOpen(false)}>
+                Festival of Giants
               </Link>
             </li>
           </ul>
